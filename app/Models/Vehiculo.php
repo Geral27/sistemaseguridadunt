@@ -9,14 +9,15 @@ class Vehiculo extends Model
 {
     public $timestamps = false;
     protected $table= 'vehiculos';
-    protected $fillabel = [
+    protected $primaryKey = 'idvehiculo';
+    protected $fillable = [
         'codigovehiculo', 'tipovehiculo' , 'modelo', 'placa', 'soat',
-        'facultad', 'escuela', 'alumno_id' , 'estado',
+        'facultad', 'escuela', 'id_user' , 'estado',
     ];
 
-    public function alumno()
+    public function user()
     {
-        return $this->belongsTo(Alumno::class);
-        #return $this->hasOne('App\Models\Alumno','alumno_id','alumno_id');
+        return $this->belongsTo(User::class);
+        //return $this->hasOne('App\Models\User','id','id');
     }
 }

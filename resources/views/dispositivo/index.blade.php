@@ -1,4 +1,6 @@
 @extends('layout.plantilla')
+
+
 @section('contenido')
 <div class="section-header">
     <h1>Dispositivos</h1>
@@ -23,19 +25,11 @@
                             <div class="input-group-btn">
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
-                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i> Nuevo Dispositivo</a>
+                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#creardis"><i class="far fa-user"></i> Nuevo Dispositivo</a>
                         </div>
                     </form>
                 </div>         
             </div>
-            @if (session('datos'))
-                <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-                    {{session('datos')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
             <div class="x_content">
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
@@ -62,43 +56,45 @@
                                 <td>{{$dis->marca}}</td>
                                 <td>{{$dis->color}}</td>
                                 <td>{{$dis->serie}}</td>
-                                <td>{{$dis->alumno->nombres}} {{$dis->alumno->apellidos}}</td>
+                                <td>{{$dis->id_user}}</td>
                                 <td>{{$dis->facultad}}</td>
                                 <td>{{$dis->escuela}}</td>
-                                <td><a href="{{route('dispositivo.edit', $dis->id)}}" type="button" ><i class="fa fa-edit"></i></a></td>
-                                <td><a href="{{route('dispositivo.confirmar', $dis->id)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
+                                <td data-id="{{$dis->iddispositivo}}">
+                                    <a href="#" data-toggle="modal" data-target="#editdis{{$dis->iddispositivo}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                                </td>
+                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroydis{{$dis->iddispositivo}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
                             </tr>
-                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="elimalumno">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h4 class="modal-title" id="nuevoAlumno">Eliminar Dispositivo</h4>
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                        </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('dispositivo.destroy', $dis->id)}}" method="GET" novalidate id="editform">
-                                                @method('delete')
-                                                @csrf
-                                                <p>¿Desea eliminar el dispositivo?
-                                                <div class="form-group">
-                                                    <div class="col-sm-6 offset-sm-3">
-                                                        <button type='submit' class="btn btn-round btn-primary btn-sm"><i class="fa fa-check"></i>  Sí</button>
-                                                        <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    No</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @endforeach
                     </tbody>
                 </table>
+                <div class="card-footer text-right">
+                    <nav class="d-inline-block">
+                        <ul class="pagination mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
+            
         </div>
+        
     </div>
 </div>
 
 @endsection
 
+@section('modales')
+    @foreach ($dispositivo as $dis)
+        @include('dispositivo.edit')
+    @endforeach
+@endsection

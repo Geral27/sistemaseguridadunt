@@ -23,14 +23,14 @@
                             <div class="input-group-btn">
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
-                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i> Nuevo Usuario</a>
+                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal" id="btnNuevo"><i class="far fa-user"></i> Nuevo Usuario</a>
                         </div>
                     </form>
                 </div>         
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="tabla">
                     <tr>
                         <th hidden>#</th>
                         <th hidden>Dni</th>
@@ -63,10 +63,10 @@
                         <td hidden>{{$us->direccion}}</td>
                         <td hidden>{{$us->telefono}}</td>
                         <td>{{$us->turno}}</td>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#edit{{$us->id}}" type="button" id="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                        <td data-id="{{$us->id}}">
+                            <a href="#" data-toggle="modal" data-target="#edit{{$us->id}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
                         </td>
-                        <td><a href="#" type="button" id="btneditar" style="color: red;"><i class="fa fa-trash"></i></a></td>
+                        <td><a href="#" type="button" data-toggle="modal" data-target="#destroy{{$us->id}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
                     </tr>
                     @endforeach
                     </table>
@@ -92,6 +92,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('modales')
@@ -99,5 +100,8 @@
         @include('usuario.edit')
     @endforeach
 @endsection
+
+
+
 
 

@@ -1,134 +1,141 @@
-@extends('layout.plantilla')
-@section('contenido')
-<div class="container body">
-    <div class="main_container">
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Editar Vehículo</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <br />
-                                <form action="{{route('vehiculo.update', $vehiculo->id)}}" method="GET" novalidate id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                    @method('put')
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Código</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigovehiculo" required="required" id="txtcodigovehiculo" value="{{$vehiculo->codigovehiculo}}" readonly/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Tipo</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <select id="soat" class="form-control" required name="tipovehiculo">
-                                                <option value="{{$vehiculo->tipovehiculo}}">{{$vehiculo->tipovehiculo}}</option>
-                                                <option value="Vigente">Auto</option>
-                                                <option value="No Vigente">Moto</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Modelo</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="100" data-validate-words="2" name="modelo" required="required" id="txtmodelo" value="{{$vehiculo->modelo}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Placa</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="7" data-validate-words="2" name="placa" required="required" id="txtplaca" value="{{$vehiculo->placa}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">SOAT</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <select id="soat" class="form-control" required name="soat">
-                                                <option value="{{$vehiculo->soat}}">{{$vehiculo->soat}}</option>
-                                                <option value="Vigente">Vigente</option>
-                                                <option value="No Vigente">No Vigente</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Alumno</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <select id="facultad" class="form-control" required name="idalumno">
-                                                @if($alumno->count())
-                                                @foreach($alumno as $a)
-                                                    <option value="{{$a->id}}">{{$a->nombres}} {{$a->apellidos}}</option>
-                                                @endforeach
-                                                @else
-                                            @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Facultad</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <select id="facultad" class="form-control" required name="facultad">
-                                                <option value="{{$vehiculo->facultad}}">{{$vehiculo->facultad}}</option>
-                                                <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                                <option value="Facultad de Ciencias Biológicas">Facultad de Ciencias Biológicas</option>
-                                                <option value="Facultad de Ciencias Económicas">Facultad de Ciencias Económicas</option>
-                                                <option value="Facultad de Farmacia y Bioquímica">Facultad de Farmacia y Bioquímica</option>
-                                                <option value="Facultad de Educación y Ciencias de la Comunicación">Facultad de Educación y Ciencias de la Comunicación</option>
-                                                <option value="Facultad de Medicina">Facultad de Medicina</option>
-                                                <option value="Facultad de Estomatología">Facultad de Estomatología</option>
-                                                <option value="Facultad de Ciencias Sociales">Facultad de Ciencias Sociales</option>
-                                                <option value="Facultad de Ciencias Físicas y Matemáticas">Facultad de Ciencias Físicas y Matemáticas</option>
-                                                <option value="Facultad de Derecho y Ciencias Políticas">Facultad de Derecho y Ciencias Políticas</option>
-                                                <option value="Facultad de Ingeniería">Facultad de Ingeniería</option>
-                                                <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
-                                                <option value="Facultad de Enfermería">Facultad de Enfermería</option>
-                                                <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Escuela</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <select id="escuela" class="form-control" required name="escuela">
-                                                <option value="{{$vehiculo->escuela}}">{{$vehiculo->escuela}}</option>
-                                                <option value="Escuela de Biología">Escuela de Biología</option>
-                                                <option value="Escuela de Biología Pesquera">Escuela de Biología Pesquera</option>
-                                                <option value="Escuela de Microbiología y Paristología">Escuela de Microbiología y Paristología</option>
-                                                <option value="Escuela de Farmacia y Bioquímica">Escuela de Farmacia y Bioquímica</option>
-                                                <option value="Escuela de Educación Inicial">Escuela de Educación Inicial</option>
-                                                <option value="Escuela de Educación Primaria">Escuela de Educación Primaria</option>
-                                                <option value="Escuela de Educación Secundaria">Escuela de Educación Secundaria</option>
-                                                <option value="Escuela de Ciencias de la Comunicación">Escuela de Ciencias de la Comunicación</option>
-                                                <option value="Escuela de Medicina">Escuela de Medicina</option>
-                                                <option value="Escuela de Estomatología">Escuela de Estomatología</option>
-                                                <option value="Facultad de Ingeniería">Facultad de Ingeniería</option>
-                                                <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
-                                                <option value="Facultad de Enfermería">Facultad de Enfermería</option>
-                                                <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-9 col-sm-9  offset-md-4">
-                                            <button type='submit' class="btn btn-round btn-primary btn-sm"><i class="fa fa-save"></i>  Submit</button>
-                                            <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    Cancelar</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="editve{{$ve->idvehiculo}}" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Vehícullo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {!! Form::model($vehiculo, [ 'method' => 'patch','route' => ['vehiculo.update', $ve->idvehiculo] ]) !!}
+                @csrf
+            <div class="row">
+                    {!! Form::number('idvehiculo', $ve->idvehiculo, ['class' => 'form-control', 'hidden']) !!}
+                <div class="form-group col-4">
+                    {!! Form::label('codigovehiculo', 'Código') !!}
+                    {!! Form::text('codigovehiculo', $ve->codigovehiculo, ['class' => 'form-control', 'required']) !!}
+                </div>
+                <div class="form-group col-4">
+                    {!! Form::label('tipovehiculo', 'Tipo de Vehículo') !!}
+                    {!! Form::select('tipovehiculo', array('' => 'Seleccione un tipo','Auto' => 'Auto', 'Moto' => 'Moto'),$ve->tipovehiculo, ['class' => 'form-control']) !!}
+                </div> 
+                <div class="form-group col-4">
+                    {!! Form::label('modelo', 'Modelo') !!}
+                    {!! Form::text('modelo', $ve->modelo, ['class' => 'form-control', 'required']) !!}
+                </div>                                
+            </div>
+            <div class="row">
+                <div class="form-group col-3">
+                    {!! Form::label('placa', 'Placa') !!}
+                    {!! Form::text('placa', $ve->placa, ['class' => 'form-control', 'required']) !!}
+                </div>    
+                <div class="form-group col-4">
+                    {!! Form::label('soat', 'SOAT') !!}
+                    {!! Form::select('soat', array('' => 'Seleccione un tipo','Vigente' => 'Vigente', 'No Vigente' => 'No Vigente'),$ve->soat, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group col-5">
+                    {!! Form::label('id_user', 'Alumno') !!}
+                    @if (count($alumnos) > 0)
+                    {!! Form::select('id_user',$alumnos,$ve->id_user, ['class' => 'form-control']) !!}
+                    @endif                        
+                </div> 
+            </div>
+            <div class="row">
+                <div class="form-group col-6" id="facultad">
+                    {!! Form::label('facultad', 'Facultad') !!}
+                    {!! Form::select('facultad', array('Selecciona una facultad' => 'Selecciona una facultad', 
+                                                       'Facultad de Ciencias Biológicas' => 'Facultad de Ciencias Biológicas', 
+                                                       'Facultad de Farmacia y Bioquímica' => 'Facultad de Farmacia y Bioquímica',
+                                                       'Facultad de Educación y Ciencias de la Comunicación' => 'Facultad de Educación y Ciencias de la Comunicación',
+                                                       'Facultad de Medicina' => 'Facultad de Medicina',
+                                                       'Facultad de Estomatología' => 'Facultad de Estomatología', 
+                                                       'Facultad de Ciencias Sociales' => 'Facultad de Ciencias Sociales',
+                                                       'Facultad de Ciencias Físicas y Matemáticas' => 'Facultad de Ciencias Físicas y Matemáticas',
+                                                       'Facultad de Ciencias Económicas' => 'Facultad de Ciencias Económicas',
+                                                       'Facultad de Derecho y Ciencias Políticas' => 'Facultad de Derecho y Ciencias Políticas', 
+                                                       'Facultad de Ingeniería' => 'Facultad de Ingeniería',
+                                                       'Facultad de Ingeniería Química' => 'Facultad de Ingeniería Química',
+                                                       'Facultad de Enfermería' => 'Facultad de Enfermería',
+                                                       'Facultad de Ciencias Agropecuarias' => 'Facultad de Ciencias Agropecuarias'),$ve->facultad, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group col-6" id="escuela">
+                    {!! Form::label('escuela', 'Escuela') !!}
+                    {!! Form::select('escuela', array('Seleccione una escuela' => 'Seleccione una escuela', 
+                                                      'Escuela de Biología' => 'Escuela de Biología', 
+                                                      'Escuela de Biología Pesquera' => 'Escuela de Biología Pesquera', 
+                                                      'Escuela de Microbiología y Paristología' => 'Escuela de Microbiología y Paristología', 
+                                                      'Escuela de Farmacia y Bioquímica' => 'Escuela de Farmacia y Bioquímica', 
+                                                      'Escuela de Educación Inicial' => 'Escuela de Educación Inicial', 
+                                                      'Escuela de Educación Primaria' => 'Escuela de Educación Primaria', 
+                                                      'Escuela de Educación Secundaria' => 'Escuela de Educación Secundaria', 
+                                                      'Escuela de Ciencias de la Comunicación' => 'Escuela de Ciencias de la Comunicación', 
+                                                      'Escuela de Medicina' => 'Escuela de Medicina', 
+                                                      'Escuela de Estomatología' => 'Escuela de Estomatología', 
+                                                      'Escuela de Antropología' => 'Escuela de Antropología', 
+                                                      'Escuela de Arqueología' => 'Escuela de Arqueología', 
+                                                      'Escuela de Trabajo Social' => 'Escuela de Trabajo Social', 
+                                                      'Escuela de Turismo' => 'Escuela de Turismo', 
+                                                      'Escuela de Historia' => 'Escuela de Historia', 
+                                                      'Escuela de Estadística' => 'Escuela de Estadística', 
+                                                      'Escuela de Física' => 'Escuela de Física', 
+                                                      'Escuela de Matemáticas' => 'Escuela de Matemáticas', 
+                                                      'Escuela de Ingeniería Informática' => 'Escuela de Ingeniería Informática', 
+                                                      'Escuela de Administración' => 'Escuela de Administración', 
+                                                      'Escuela de Contabilidad' => 'Escuela de Contabilidad', 
+                                                      'Escuela de Economía' => 'Escuela de Economía', 
+                                                      'Escuela de Derecho' => 'Escuela de Derecho', 
+                                                      'Escuela de Ciencia política y Gobernabilidad' => 'Escuela de Ciencia política y Gobernabilidad', 
+                                                      'Escuela de Ingeniería Industrial' => 'Escuela de Ingeniería Industrial', 
+                                                      'Escuela de Ingeniería Mecánica' => 'Escuela de Ingeniería Mecánica', 
+                                                      'Escuela de Ingeniería Metalúrgica' => 'Escuela de Ingeniería Metalúrgica', 
+                                                      'Escuela de Ingeniería de Materiales' => 'Escuela de Ingeniería de Materiales', 
+                                                      'Escuela de Ingeniería de Sistemas' => 'Escuela de Ingeniería de Sistemas', 
+                                                      'Escuela de Ingeniería Minas' => 'Escuela de Ingeniería Minas', 
+                                                      'Escuela de Ingeniería Mecatrónica' => 'Escuela de Ingeniería Mecatrónica', 
+                                                      'Escuela de Ingeniería Civil' => 'Escuela de Ingeniería Civil', 
+                                                      'Escuela de Arquitectura' => 'Escuela de Arquitectura', 
+                                                      'Escuela de Ingeniería Química' => 'Escuela de Ingeniería Química', 
+                                                      'Escuela de Ingeniería Ambiental' => 'Escuela de Ingeniería Ambiental', 
+                                                      'Escuela de Enfermería' => 'Escuela de Enfermería', 
+                                                      'Escuela de Ingeniería Agroindustrial' => 'Escuela de Ingeniería Agroindustrial', 
+                                                      'Escuela de Ingeniería Agrícola' => 'Escuela de Ingeniería Agrícola', 
+                                                      'Escuela de Ingeniería Agrónoma' => 'Escuela de Ingeniería Agrónoma', 
+                                                      'Escuela de Ingeniería Zootecnista' => 'Escuela de Ingeniería Zootecnista'),$ve->escuela, ['class' => 'form-control']) !!}
                 </div>
             </div>
+
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="btnGuardar">Guardar</button>
+            {!! Form::close() !!}
+        </div>
         </div>
     </div>
+
 </div>
 
-
-@endsection
-
-
-
+<!-- Delete Modal -->
+<div class="modal fade" id="destroyve{{$ve->idvehiculo}}" tabindex="-1" role="dialog" data-backdrop="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Eliminar Vehículo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              {!! Form::model($vehiculo, [ 'method' => 'delete','route' => ['vehiculo.destroy', $ve->idvehiculo] ]) !!}
+                  <h6 class="text-center">¿Seguro que quiere eliminar a este vehículo?</h6>
+                  
+          </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{Form::button('Eliminar', ['class' => 'btn btn-danger', 'type' => 'submit'])}}
+                {!! Form::close() !!}
+            </div>
+      </div>
+    </div>
+</div>

@@ -1,5 +1,8 @@
 @extends('layout.plantilla')
+@include('vehiculo.create')
 @section('contenido')
+
+
 <div class="section-header">
     <h1>Vehículos</h1>
 </div>
@@ -23,19 +26,11 @@
                             <div class="input-group-btn">
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
-                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i> Nuevo Vehículo</a>
+                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#crearve"><i class="fa fa-car"></i> Nuevo Vehículo</a>
                         </div>
                     </form>
                 </div>         
             </div>
-            @if (session('datos'))
-                <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-                    {{session('datos')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
             <div class="x_content">
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
@@ -54,47 +49,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($vehiculo as $dis)
+                        @foreach ($vehiculo as $ve)
                             <tr>
-                                <td hidden>{{$dis->id}}</td>
-                                <td>{{$dis->codigovehiculo}}</td>
-                                <td>{{$dis->tipovehiculo}}</td>
-                                <td>{{$dis->modelo}}</td>
-                                <td>{{$dis->placa}}</td>
-                                <td>{{$dis->soat}}</td>
-                                <td>{{$dis->alumno->nombres}} {{$dis->alumno->apellidos}}</td>
-                                <td>{{$dis->facultad}}</td>
-                                <td>{{$dis->escuela}}</td>
-                                <td><a href="{{route('vehiculo.edit', $dis->id)}}" type="button" ><i class="fa fa-edit"></i></a></td>
-                                <td><a href="{{route('vehiculo.confirmar', $dis->id)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
+                                <td hidden>{{$ve->idvehiculo}}</td>
+                                <td>{{$ve->codigovehiculo}}</td>
+                                <td>{{$ve->tipovehiculo}}</td>
+                                <td>{{$ve->modelo}}</td>
+                                <td>{{$ve->placa}}</td>
+                                <td>{{$ve->soat}}</td>
+                                <td>{{$ve->id_user}}</td>
+                                <td>{{$ve->facultad}}</td>
+                                <td>{{$ve->escuela}}</td>
+                                <td data-id="{{$ve->idvehiculo}}">
+                                    <a href="#" data-toggle="modal" data-target="#editve{{$ve->idvehiculo}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                                </td>
+                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroyve{{$ve->idvehiculo}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
                             </tr>
-                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="elimalumno">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h4 class="modal-title" id="nuevoAlumno">Eliminar Dispositivo</h4>
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                        </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('vehiculo.destroy', $dis->id)}}" method="GET" novalidate id="editform">
-                                                @method('delete')
-                                                @csrf
-                                                <p>¿Desea eliminar el vehiculo?
-                                                <div class="form-group">
-                                                    <div class="col-sm-6 offset-sm-3">
-                                                        <button type='submit' class="btn btn-round btn-primary btn-sm"><i class="fa fa-check"></i>  Sí</button>
-                                                        <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    No</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @endforeach
                     </tbody>
                 </table>
+                <div class="card-footer text-right">
+                    <nav class="d-inline-block">
+                        <ul class="pagination mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -102,3 +92,8 @@
 
 @endsection
 
+@section('modales')
+    @foreach ($vehiculo as $ve)
+        @include('vehiculo.edit')
+    @endforeach
+@endsection

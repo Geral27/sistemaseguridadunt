@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VerificardispController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,30 +64,30 @@ Route::get('cancelar', function(){
 Route::get('alumno/{idalumno}/confirmar', 'App\Http\Controllers\AlumnoController@confirmar')->name("alumno.confirmar");
 Route::get('alumno/{idalumno}/destroy', 'App\Http\Controllers\AlumnoController@destroy')->name("alumno.destroy");
 
+//Dispositivo
 Route::get('dispositivo', 'App\Http\Controllers\DispositivoController@index')->name("dispositivo.index");
-Route::get('show', 'App\Http\Controllers\DispositivoController@show')->name("dispositivo.show");
-
-Route::get('create', 'App\Http\Controllers\DispositivoController@create')->name("dispositivo.create");
-Route::get('store', 'App\Http\Controllers\DispositivoController@store')->name("dispositivo.store");
-Route::get('dispositivo/{iddispositivo}/update', 'App\Http\Controllers\DispositivoController@update')->name("dispositivo.update");
+Route::get('dispositivo/create', 'App\Http\Controllers\DispositivoController@create')->name("dispositivo.create");
+Route::get('dispositivo/store', 'App\Http\Controllers\DispositivoController@store')->name("dispositivo.store");
+Route::patch('dispositivo/update/{iddispositivo}', 'App\Http\Controllers\DispositivoController@update')->name("dispositivo.update");
 Route::get('dispositivo/{iddispositivo}/edit', 'App\Http\Controllers\DispositivoController@edit')->name("dispositivo.edit");
 Route::get('cancelar', function(){
     return redirect()->route('dispositivo.index')->with('datos', 'Acción Cancelada');
 })->name('cancelar');
-Route::get('confirmar', 'App\Http\Controllers\DispositivoController@confirmar')->name("dispositivo.confirmar");
-Route::get('destroy', 'App\Http\Controllers\DispositivoController@destroy')->name("dispositivo.destroy");
+Route::delete('dispositivo/destroy/{iddispositivo}', 'App\Http\Controllers\DispositivoController@destroy')->name("dispositivo.destroy");
 
+//Vehiculo
 Route::get('vehiculo', 'App\Http\Controllers\VehiculoController@index')->name("vehiculo.index");
 Route::get('vehiculo/create', 'App\Http\Controllers\VehiculoController@create')->name("vehiculo.create");
 Route::get('vehiculo/store', 'App\Http\Controllers\VehiculoController@store')->name("vehiculo.store");
-Route::get('vehiculo/{idvehiculo}/update', 'App\Http\Controllers\VehiculoController@update')->name("vehiculo.update");
-Route::get('vehiculo/{idvehiculo}/edit', 'App\Http\Controllers\VehiculoController@edit')->name("vehiculo.edit");
+Route::patch('vehiculo/update/{idvehiculo}', 'App\Http\Controllers\VehiculoController@update')->name("vehiculo.update");
+Route::get('vehiculo/edit/{idvehiculo}', 'App\Http\Controllers\VehiculoController@edit')->name("vehiculo.edit");
 Route::get('cancelar', function(){
     return redirect()->route('vehiculo.index')->with('datos', 'Acción Cancelada');
 })->name('cancelar');
 Route::get('vehiculo/{idvehiculo}/confirmar', 'App\Http\Controllers\VehiculoController@confirmar')->name("vehiculo.confirmar");
-Route::get('vehiculo/{idvehiculo}/destroy', 'App\Http\Controllers\VehiculoController@destroy')->name("vehiculo.destroy");
+Route::delete('vehiculo/destroy/{idvehiculo}', 'App\Http\Controllers\VehiculoController@destroy')->name("vehiculo.destroy");
 
+//Usuario
 Route::get('usuario', 'App\Http\Controllers\UsuarioController@index')->name("usuario.index");
 Route::get('usuario/create', 'App\Http\Controllers\UsuarioController@create')->name("usuario.create");
 Route::get('usuario/store', 'App\Http\Controllers\UsuarioController@store')->name("usuario.store");
@@ -95,8 +96,7 @@ Route::get('usuario/{idusuario}/edit', 'App\Http\Controllers\UsuarioController@e
 Route::get('usuario/cancelar', function(){
     return redirect()->route('usuario.index')->with('datos', 'Acción Cancelada');
 })->name('usuario/cancelar');
-Route::get('usuario/{idusuario}/confirmar', 'App\Http\Controllers\UsuarioController@confirmar')->name("usuario.confirmar");
-Route::get('usuario/{idusuario}/destroy', 'App\Http\Controllers\UsuariooController@destroy')->name("usuario.destroy");
+Route::delete('usuario/destroy/{id}', 'App\Http\Controllers\UsuarioController@destroy')->name("usuario.destroy");
 
 //Vigilante
 Route::get('vigilante', 'App\Http\Controllers\VigilanteController@index')->name("vigilante.index");
@@ -123,3 +123,8 @@ Route::get('cancelar', function(){
 })->name('cancelar');
 Route::get('personal/{idpersonal}/confirmar', 'App\Http\Controllers\PersonalController@confirmar')->name("personal.confirmar");
 Route::get('personal/{idpersonal}/destroy', 'App\Http\Controllers\PersonalController@destroy')->name("personal.destroy");
+
+//Verificar
+Route::get('verificar', 'App\Http\Controllers\VerificardispController@index')->name("verificar.vdispositivo");
+Route::get('verificarv', 'App\Http\Controllers\VerificardispController@index2')->name("verificar.vvehiculo");
+Route::get('verificar/create', 'App\Http\Controllers\DispositivoController@create')->name("verificar.create1");

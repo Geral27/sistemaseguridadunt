@@ -76,8 +76,8 @@
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i><span>Verificación</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="index-0.html">Dispositivos Electrónicos</a></li>
-                <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
+                <li><a class="nav-link" href="{{URL::to('/verificar')}}">Dispositivos Electrónicos</a></li>
+                <li><a class="nav-link" href="{{URL::to('/verificarv')}}">Vehículos</a></li>
               </ul>
             </li>            
           </ul>

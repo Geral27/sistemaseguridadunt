@@ -98,7 +98,7 @@
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i><span>Verificación</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="index-0.html">Dispositivos Electrónicos</a></li>
+                <li><a class="nav-link" href="{{URL::to('/verificar')}}">Dispositivos Electrónicos</a></li>
                 <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
               </ul>
             </li>            
@@ -114,9 +114,9 @@
         </section>
       </div>
       
-      @include('usuario.create')
+       @include('usuario.create')
+      
       @yield('modales')
-
       <footer class="main-footer">
         <div class="footer-left">
           Copyright &copy; 2022 <div class="bullet"></div> Universidad Nacional de Trujillo</a>
@@ -154,33 +154,111 @@
   <script src="assets/js/custom.js"></script>
   <script>
     $(document).ready(function() {
-        $("input[name=role_id]").click(function () { 
-            var value = $("input:radio[name=role_id]:checked").val();
-            if (value == 'alumno') {
-                $("#codigoi").attr('hidden', false);
-                $("#facultad").attr('hidden', false);
-                $("#escuela").attr('hidden', false);
-                $("#contraseña").attr('hidden', false);
-                $("#turno").attr('hidden', true);
-            }
-            if (value == 'personal') {
-                $("#codigoi").attr('hidden', false);
-                $("#facultad").attr('hidden', false);
-                $("#escuela").attr('hidden', false);
-                $("#contraseña").attr('hidden', false);
-                $("#turno").attr('hidden', true);
-            }
-            if (value == 'vigilante') {
-                $("#turno").attr('hidden', false);
-                $("#contraseña").attr('hidden', false);
-                $("#codigoi").attr('hidden', true);
-                $("#facultad").attr('hidden', true);
-                $("#escuela").attr('hidden', true);
-            }
-        });
+      $("input[name=role_id]").click(function () { 
+        var value = $("input:radio[name=role_id]:checked").val();
+        if (value == 'alumno') {
+            $("#codigoi").attr('hidden', false);
+            $("#facultad").attr('hidden', false);
+            $("#escuela").attr('hidden', false);
+            $("#contraseña").attr('hidden', false);
+            $("#turno").attr('hidden', true);
+        }
+        if (value == 'personal') {
+            $("#codigoi").attr('hidden', false);
+            $("#facultad").attr('hidden', false);
+            $("#escuela").attr('hidden', false);
+            $("#contraseña").attr('hidden', false);
+            $("#turno").attr('hidden', true);
+        }
+        if (value == 'vigilante') {
+            $("#turno").attr('hidden', false);
+            $("#contraseña").attr('hidden', false);
+            $("#codigoi").attr('hidden', true);
+            $("#facultad").attr('hidden', true);
+            $("#escuela").attr('hidden', true);
+        }
+      });           
+    }); 
+    $("#btnNuevo").click(function () {          
+      $("input:radio[name=role_id]").attr("checked", false);
+      var value = $("input:radio[name=role_id]:checked").val();
+      if (value == 'alumno') {
+        $("input:radio").prop("checked", false);
+        $("#codigoi").attr('hidden', true);
+        $("#facultad").attr('hidden', true);
+        $("#escuela").attr('hidden', true);
+        $("#contraseña").attr('hidden', true);
+        $("#turno").attr('hidden', true);
+      }
+      if (value == 'personal') {
+        $("input:radio").prop("checked", false);
+        $("#codigoi").attr('hidden', true);
+        $("#facultad").attr('hidden', true);
+        $("#escuela").attr('hidden', true);
+        $("#contraseña").attr('hidden', true);
+        $("#turno").attr('hidden', true);
+      }
+      if (value == 'vigilante') {
         
-    });
-    </script>
+        $("#codigoi").attr('hidden', true);
+        $("#facultad").attr('hidden', true);
+        $("#escuela").attr('hidden', true);
+        $("#contraseña").attr('hidden', true);
+        $("#turno").attr('hidden', true);
+      }
+    });  
+    $(".btneditar").click(function () { 
+      var idUser = $(this).parent().data('id');
+      console.log(idUser)
+      var texto = $("#texto-"+idUser).val() 
+      console.log(texto)
+      if (texto == 'Alumno') {
+        $(".codigoi").prop('hidden', false);
+        $(".facultad").attr('hidden', false);
+        $(".escuela").attr('hidden', false);
+        $(".turno").attr('hidden', true);
+      }
+      if (texto == 'Personal') {
+        $(".codigoi").prop('hidden', false);
+        $(".facultad").attr('hidden', false);
+        $(".escuela").attr('hidden', false);
+        $(".turno").attr('hidden', true);
+      }
+      if (texto == 'Vigilante') {
+        $(".codigoi").prop('hidden', true);
+        $(".facultad").attr('hidden', true);
+        $(".escuela").attr('hidden', true);
+        $(".turno").attr('hidden', false);
+      }
+      /* $("input:radio[name=role_id]").attr("checked", false);    */
+      $("input:radio[name=role_id_"+idUser+"]").val([texto.toLowerCase()])
+      $("input[type=radio]").click(function () { 
+        var input = $(this).attr("name");
+        var idUser = input.split("_")[2];
+        var value = $("input:radio[name="+input+"]:checked").val();
+        var texto = $("#texto-"+idUser).val(value);
+        if (value == 'alumno') {
+          $(".codigoi").prop('hidden', false).val("");
+          $(".facultad").attr('hidden', false).val("");
+          $(".escuela").attr('hidden', false).val("");
+          $(".turno").attr('hidden', true).val("");
+        }
+        if (value == 'personal') {
+          $(".codigoi").prop('hidden', false).val("");
+          $(".facultad").attr('hidden', false).val("");
+          $(".escuela").attr('hidden', false).val("");
+          $(".turno").attr('hidden', true).val("");
+        }
+        if (value == 'vigilante') {
+          $(".codigoi").prop('hidden', true).val("");
+          $(".facultad").attr('hidden', true).val("");
+          $(".escuela").attr('hidden', true).val("");
+          $(".turno").attr('hidden', false).val("");
+        }
+      });       
+    });     
+    
+  </script>
         
 </body>
 </html>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Alumno;
+use App\Models\User;
 use App\Models\Vehiculo;
 
 class VehiculoController extends Controller
@@ -15,8 +15,20 @@ class VehiculoController extends Controller
      */
     public function index()
     {
+        $users = User::all();
+        #$users = User::pluck('name','id');
+        /* $alumnos = $users->where(function($query) {
+            $query->hasRole('alumno');
+        }); */
+        foreach ($users as $k => $user) {
+            if($user->hasRole('alumno')){
+                $alumnos_id[] = $user->id;
+                $alumnos_name[] = $user->name;
+            }
+        }
+        $alumnos = array_combine($alumnos_id,$alumnos_name);
         $vehiculo = Vehiculo::where('estado', '=', '1')->get();
-        return view('vehiculo.index', compact('vehiculo'));
+        return view('vehiculo.index', compact('vehiculo','alumnos'));
     }
 
     /**
@@ -26,8 +38,8 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        $alumno = Alumno::all();
-        return view('vehiculo.create',compact('alumno'));
+        $user = User::all();
+        return view('vehiculo.create',compact('user'));
     }
 
     /**
@@ -38,18 +50,19 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::where('estado','=','1')->get();
         $vehiculo = new Vehiculo();
-        $vehiculo->codigovehiculo=$request->codigovehiculo;
-        $vehiculo->tipovehiculo=$request->tipovehiculo;
-        $vehiculo->modelo=$request->modelo;
-        $vehiculo->placa=$request->placa;
-        $vehiculo->soat=$request->soat;
-        $vehiculo->facultad=$request->facultad;
-        $vehiculo->escuela=$request->escuela;
-        $vehiculo->alumno_id=$request->idalumno;
+        $vehiculo->codigovehiculo=$request->input('codigovehiculo');
+        $vehiculo->tipovehiculo=$request->input('tipovehiculo');
+        $vehiculo->modelo=$request->input('modelo');
+        $vehiculo->placa=$request->input('placa');
+        $vehiculo->soat=$request->input('soat');
+        $vehiculo->facultad=$request->input('facultad');
+        $vehiculo->escuela=$request->input('escuela');
+        $vehiculo->id_user = $request->input('id_user');
         $vehiculo->estado='1';
         $vehiculo->save();
-        return redirect()->route('vehiculo.index')->with('datos', 'Registro nuevo guardado');
+        return redirect('vehiculo')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -71,10 +84,10 @@ class VehiculoController extends Controller
      */
     public function edit($idvehiculo)
     {
-        $alumno = Alumno::all();
+        $user = User::all();
         $vehiculo=Vehiculo::findOrFail($idvehiculo);
 
-        return view('vehiculo.edit', compact('vehiculo', 'alumno'));
+        return view('vehiculo.edit', compact('vehiculo', 'user'));
     }
 
     /**
@@ -87,17 +100,9 @@ class VehiculoController extends Controller
     public function update(Request $request, $idvehiculo)
     {
         $vehiculo=Vehiculo::findOrFail($idvehiculo);
-        $vehiculo->codigovehiculo=$request->codigovehiculo;
-        $vehiculo->tipovehiculo=$request->tipovehiculo;
-        $vehiculo->modelo=$request->modelo;
-        $vehiculo->placa=$request->placa;
-        $vehiculo->soat=$request->soat;
-        $vehiculo->facultad=$request->facultad;
-        $vehiculo->escuela=$request->escuela;
-        $vehiculo->alumno_id=$request->idalumno;
-        $vehiculo->estado='1';
-        $vehiculo->save();
-        return redirect()->route('vehiculo.index')->with('datos', 'Registro nuevo guardado');
+        $input = $request->all(); 
+        $vehiculo->fill($input)->save();
+        return redirect('vehiculo')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -111,6 +116,6 @@ class VehiculoController extends Controller
         $vehiculo=Vehiculo::findOrFail($idvehiculo);
         $vehiculo->estado='0';
         $vehiculo->save();
-        return redirect()->route('vehiculo.index')->with('datos', 'Registro eliminado');
+        return redirect('vehiculo')->with('datos', 'Registro eliminado');
     }
 }

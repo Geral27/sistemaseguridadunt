@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Alumno;
+use App\Models\User;
 use App\Models\Dispositivo;
 
 class DispositivoController extends Controller
@@ -15,8 +15,20 @@ class DispositivoController extends Controller
      */
     public function index()
     {
+        $users = User::all();
+        #$users = User::pluck('name','id');
+        /* $alumnos = $users->where(function($query) {
+            $query->hasRole('alumno');
+        }); */
+        foreach ($users as $k => $user) {
+            if($user->hasRole('alumno')){
+                $alumnos_id[] = $user->id;
+                $alumnos_name[] = $user->name;
+            }
+        }
+        $alumnos = array_combine($alumnos_id,$alumnos_name);
         $dispositivo = Dispositivo::where('estado', '=', '1')->get();
-        return view('dispositivo.index', compact('dispositivo'));
+        return view('dispositivo.index', compact('dispositivo','alumnos'));
     }
 
     /**
@@ -26,8 +38,10 @@ class DispositivoController extends Controller
      */
     public function create()
     {
-        $alumno = Alumno::all();
-        return view('dispositivo.create',compact('alumno'));
+        $user = User::all();
+        return view('dispositivo.create', compact('user'));   
+        //$alumno = Alumno::all();
+        //return view('dispositivo.create',compact('alumno'));
     }
 
     /**
@@ -38,19 +52,19 @@ class DispositivoController extends Controller
      */
     public function store(Request $request)
     {
-        $alumno = Alumno::all();
+        $user = User::where('estado','=','1')->get();
         $dispositivo = new Dispositivo();
-        $dispositivo->codigodispositivo=$request->codigodispositivo;
-        $dispositivo->tipodispositivo=$request->tipodispositivo;
-        $dispositivo->marca=$request->marca;
-        $dispositivo->color=$request->color;
-        $dispositivo->serie=$request->serie;
-        $dispositivo->alumno_id=$request->idalumno;
-        $dispositivo->facultad=$request->facultad;
-        $dispositivo->escuela=$request->escuela;
-        $dispositivo->estado='1';
+        $dispositivo->codigodispositivo = $request->input('codigodispositivo');
+        $dispositivo->tipodispositivo = $request->input('tipodispositivo');
+        $dispositivo->marca = $request->input('marca');
+        $dispositivo->color = $request->input('color');
+        $dispositivo->serie = $request->input('serie');
+        $dispositivo->id_user = $request->input('id_user');
+        $dispositivo->facultad = $request->input('facultad');
+        $dispositivo->escuela = $request->input('escuela');
+        $dispositivo->estado = '1';
         $dispositivo->save();
-        return redirect()->route('dispositivo.index')->with('datos', 'Registro nuevo guardado');
+        return redirect('dispositivo')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -62,9 +76,9 @@ class DispositivoController extends Controller
     public function show()
     // $iddispositivo
     {
-        $alumno = Alumno::all();
+        //$alumno = Alumno::all();
         $dispositivo = new Dispositivo();
-        $dispositivo->codigodispositivo=$request->codigodispositivo;
+        /*$dispositivo->codigodispositivo=$request->codigodispositivo;
         $dispositivo->tipodispositivo=$request->tipodispositivo;
         $dispositivo->marca=$request->marca;
         $dispositivo->color=$request->color;
@@ -72,7 +86,7 @@ class DispositivoController extends Controller
         $dispositivo->alumno_id=$request->idalumno;
         $dispositivo->facultad=$request->facultad;
         $dispositivo->escuela=$request->escuela;
-        $dispositivo->estado='1';
+        $dispositivo->estado='1';*/
         $dispositivo->save();
         return redirect()->route('dispositivo.index2')->with('datos', 'Mis dispositivos');
     }
@@ -85,10 +99,10 @@ class DispositivoController extends Controller
      */
     public function edit($iddispositivo)
     {
-        $alumno = Alumno::all();
+        $user = User::all();
         $dispositivo=Dispositivo::findOrFail($iddispositivo);
 
-        return view('dispositivo.edit', compact('dispositivo', 'alumno'));
+        return view('dispositivo.edit', compact('dispositivo', 'user'));
     }
 
     /**
@@ -101,17 +115,10 @@ class DispositivoController extends Controller
     public function update(Request $request, $iddispositivo)
     {
         $dispositivo = Dispositivo::findOrFail($iddispositivo);
-        $dispositivo->codigodispositivo=$request->codigodispositivo;
-        $dispositivo->tipodispositivo=$request->tipodispositivo;
-        $dispositivo->marca=$request->marca;
-        $dispositivo->color=$request->color;
-        $dispositivo->serie=$request->serie;
-        $dispositivo->alumno_id=$request->idalumno;
-        $dispositivo->facultad=$request->facultad;
-        $dispositivo->escuela=$request->escuela;
-        $dispositivo->estado='1';
-        $dispositivo->save();
-        return redirect()->route('dispositivo.index')->with('datos', 'Registro nuevo guardado');
+        $input = $request->all(); 
+        //$user->attachRole($request->input('role_id'));      
+        $dispositivo->fill($input)->save();
+        return redirect('dispositivo')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -125,6 +132,6 @@ class DispositivoController extends Controller
         $dispositivo=Dispositivo::findOrFail($iddispositivo);
         $dispositivo->estado='0';
         $dispositivo->save();
-        return redirect()->route('dispositivo.index')->with('datos', 'Registro eliminado');
+        return redirect('dispositivo')->with('datos', 'Registro eliminado');
     }
 }

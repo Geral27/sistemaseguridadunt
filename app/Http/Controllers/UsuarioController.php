@@ -94,9 +94,11 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $input = $request->all();
+        $input = $request->all(); 
+        //$user->attachRole($request->input('role_id'));      
         $user->fill($input)->save();
         return redirect('usuario')->with('datos', 'Registro nuevo guardado');
+        
     }
 
     /**
@@ -105,12 +107,12 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idusuario)
+    public function destroy($id)
     {
-        $usuario=Usuario::findOrFail($idusuario);
-        $usuario->estado='0';
-        $usuario->save();
-        return redirect()->route('usuario.index')->with('datos', 'Registro eliminado');
+        $user=User::findOrFail($id);
+        $user->estado='0';
+        $user->save();
+        return redirect('usuario')->with('datos', 'Registro eliminado');
     }
 
     public function login(Request $request){

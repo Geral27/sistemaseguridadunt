@@ -3,6 +3,8 @@
 namespace App\Models;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Dispositivo;
+use App\Models\Vehiculo;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,4 +62,12 @@ class User extends Authenticatable
         #return $this->hasOne('App\Models\Rol','idrol','idrol');
     }
 
+    public function dispositivo()
+    {
+        return $this->hasMany(Dispositivo::class,'iddispositivo','iddispositivo');
+    }
+    public function vehiculo()
+    {
+        return $this->hasMany(Vehiculo::class,'idvehiculo','idvehiculo');
+    }
 }
