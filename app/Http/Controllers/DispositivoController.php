@@ -27,7 +27,7 @@ class DispositivoController extends Controller
     public function create()
     {
         $alumno = Alumno::all();
-        return view('dispositivo.create',compact('alumno'));   
+        return view('dispositivo.create',compact('alumno'));
     }
 
     /**
@@ -45,7 +45,7 @@ class DispositivoController extends Controller
         $dispositivo->marca=$request->marca;
         $dispositivo->color=$request->color;
         $dispositivo->serie=$request->serie;
-        $dispositivo->idalumno=$request->idalumno;
+        $dispositivo->alumno_id=$request->idalumno;
         $dispositivo->facultad=$request->facultad;
         $dispositivo->escuela=$request->escuela;
         $dispositivo->estado='1';
@@ -74,7 +74,7 @@ class DispositivoController extends Controller
     {
         $alumno = Alumno::all();
         $dispositivo=Dispositivo::findOrFail($iddispositivo);
-        
+
         return view('dispositivo.edit', compact('dispositivo', 'alumno'));
     }
 
@@ -93,7 +93,7 @@ class DispositivoController extends Controller
         $dispositivo->marca=$request->marca;
         $dispositivo->color=$request->color;
         $dispositivo->serie=$request->serie;
-        $dispositivo->idalumno=$request->idalumno;
+        $dispositivo->alumno_id=$request->idalumno;
         $dispositivo->facultad=$request->facultad;
         $dispositivo->escuela=$request->escuela;
         $dispositivo->estado='1';

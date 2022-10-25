@@ -13,13 +13,13 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                
-                                <form action="{{route('alumno.update', $alumno->idalumno)}}" method="GET" novalidate id="editform">
+
+                                <form action="{{route('alumno.update', $alumno->id)}}" method="GET" novalidate id="editform">
                                     @method('put')
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Dni</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="dni" required="required" id="txtdni1" value="{{$alumno->dni}}" disabled/>                                    
+                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="dni" required="required" id="txtdni1" value="{{$alumno->dni}}" disabled/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -81,7 +81,7 @@
                                                 <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
                                                 <option value="Facultad de Enfermería">Facultad de Enfermería</option>
                                                 <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>                    
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="field item form-group">
@@ -103,7 +103,7 @@
                                             <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    Cancelar</a>
                                         </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
                         </div>
                     </div>

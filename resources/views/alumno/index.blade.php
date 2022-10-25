@@ -10,7 +10,7 @@
                         <a type="button" class="btn btn-round btn-primary btn-sm" href="{{route('alumno.create')}}"><i class="fa fa-user"></i>  Nuevo Alumno</a>
                     </div>
                 </div>
-                <div class="clearfix"></div>               
+                <div class="clearfix"></div>
             </div>
             @if (session('datos'))
                 <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
@@ -24,7 +24,7 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                        <th hidden>#</th> 
+                        <th hidden>#</th>
                         <th>Dni</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
@@ -37,10 +37,10 @@
                         <th></th>
                         </tr>
                     </thead>
-                    <tbody>  
+                    <tbody>
                         @foreach ($alumno as $itemalumno)
                             <tr>
-                                <td hidden>{{$itemalumno->idalumno}}</td>
+                                <td hidden>{{$itemalumno->id}}</td>
                                 <td>{{$itemalumno->dni}}</td>
                                 <td>{{$itemalumno->nombres}}</td>
                                 <td>{{$itemalumno->apellidos}}</td>
@@ -49,8 +49,8 @@
                                 <td>{{$itemalumno->escuela}}</td>
                                 <td>{{$itemalumno->telefono}}</td>
                                 <td>{{$itemalumno->correo}}</td>
-                                <td><a href="{{route('alumno.edit', $itemalumno->idalumno)}}" type="button" id="btneditar"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="{{route('alumno.confirmar', $itemalumno->idalumno)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="{{route('alumno.edit', $itemalumno->id)}}" type="button" id="btneditar"><i class="fa fa-edit"></i></a></td>
+                                <td><a href="{{route('alumno.confirmar', $itemalumno->id)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
                             </tr>
                             <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="elimalumno">
                                 <div class="modal-dialog modal-sm">
@@ -61,7 +61,7 @@
                                         </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{route('alumno.destroy', $itemalumno->idalumno)}}" method="GET" novalidate id="editform">
+                                            <form action="{{route('alumno.destroy', $itemalumno->id)}}" method="GET" novalidate id="editform">
                                                 @method('delete')
                                                 @csrf
                                                 <p>¿Desea eliminar el alumno?
@@ -71,7 +71,7 @@
                                                         <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    No</a>
                                                     </div>
                                                 </div>
-                                            </form>                                  
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

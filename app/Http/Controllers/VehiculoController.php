@@ -38,7 +38,6 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        $alumno = Alumno::all();
         $vehiculo = new Vehiculo();
         $vehiculo->codigovehiculo=$request->codigovehiculo;
         $vehiculo->tipovehiculo=$request->tipovehiculo;
@@ -47,7 +46,7 @@ class VehiculoController extends Controller
         $vehiculo->soat=$request->soat;
         $vehiculo->facultad=$request->facultad;
         $vehiculo->escuela=$request->escuela;
-        $vehiculo->idalumno=$request->idalumno;
+        $vehiculo->alumno_id=$request->idalumno;
         $vehiculo->estado='1';
         $vehiculo->save();
         return redirect()->route('vehiculo.index')->with('datos', 'Registro nuevo guardado');
@@ -74,7 +73,7 @@ class VehiculoController extends Controller
     {
         $alumno = Alumno::all();
         $vehiculo=Vehiculo::findOrFail($idvehiculo);
-        
+
         return view('vehiculo.edit', compact('vehiculo', 'alumno'));
     }
 
@@ -95,7 +94,7 @@ class VehiculoController extends Controller
         $vehiculo->soat=$request->soat;
         $vehiculo->facultad=$request->facultad;
         $vehiculo->escuela=$request->escuela;
-        $vehiculo->idalumno=$request->idalumno;
+        $vehiculo->alumno_id=$request->idalumno;
         $vehiculo->estado='1';
         $vehiculo->save();
         return redirect()->route('vehiculo.index')->with('datos', 'Registro nuevo guardado');

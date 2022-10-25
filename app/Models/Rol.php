@@ -9,8 +9,7 @@ class Rol extends Model
 {
     public $timestamps = false;
     protected $table= 'roles';
-    protected $primaryKey='idrol';
     protected $fillabel = [
-        'idrol', 'descripcion','estado',
+       'descripcion','estado',
     ];
 }

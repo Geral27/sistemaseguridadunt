@@ -17,7 +17,7 @@
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Código</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigovehiculo" required="required" id="txtcodigovehiculo"/>              
+                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigovehiculo" required="required" id="txtcodigovehiculo"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -29,17 +29,17 @@
                                                 <option value="No Vigente">Moto</option>
                                             </select>
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Modelo</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="100" data-validate-words="2" name="modelo" required="required" id="txtmodelo"/>              
+                                            <input class="form-control"  data-validate-length-range="100" data-validate-words="2" name="modelo" required="required" id="txtmodelo"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Placa</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="7" data-validate-words="2" name="placa" required="required" id="txtplaca"/>              
+                                            <input class="form-control"  data-validate-length-range="7" data-validate-words="2" name="placa" required="required" id="txtplaca"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -51,7 +51,7 @@
                                                 <option value="No Vigente">No Vigente</option>
                                             </select>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Alumno</label>
                                         <div class="col-md-6 col-sm-6">
@@ -59,7 +59,7 @@
                                                 <option value="">---- Selecciona Alumno ----</option>
                                                 @if($alumno->count())
                                                     @foreach($alumno as $a)
-                                                        <option value="{{$a->idalumno}}">{{$a->nombres}} {{$a->apellidos}}</option>
+                                                        <option value="{{$a->id}}">{{$a->nombres}} {{$a->apellidos}}</option>
                                                     @endforeach
                                                     @else
                                                 @endif
@@ -107,7 +107,7 @@
                                                 <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
                                                 <option value="Facultad de Enfermería">Facultad de Enfermería</option>
                                                 <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>                    
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>

@@ -9,14 +9,15 @@ class Dispositivo extends Model
 {
     public $timestamps = false;
     protected $table= 'dispositivos';
-    protected $primaryKey='iddispositivo';
     protected $fillabel = [
-        'iddispositivo', 'codigodispositivo', 'tipodispositivo', 'marca', 'color', 
-        'serie', 'idalumno', 'facultad' , 'escuela', 'estado',
+        'codigodispositivo', 'tipodispositivo', 'marca', 'color',
+        'serie', 'alumno_id', 'facultad' , 'escuela', 'estado',
     ];
 
     public function alumno()
     {
-        return $this->hasOne('App\Models\Alumno','idalumno','idalumno');
+
+        return $this->belongsTo(Alumno::class);
+        #return $this->hasOne('App\Models\Alumno','idalumno','idalumno');
     }
 }

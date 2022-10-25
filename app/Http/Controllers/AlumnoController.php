@@ -106,7 +106,6 @@ class AlumnoController extends Controller
     public function update(Request $request, $idalumno)
     {
         $data=request()->validate([
-            'dni' => 'required|max:8',
             'nombres' => 'required|max:100',
             'apellidos' => 'required|max:100',
             'codigomatricula' => 'required|max:10',
@@ -116,8 +115,6 @@ class AlumnoController extends Controller
             'correo' => 'required|max:100'
         ],
         [
-            'dni.required' => 'Ingresar dni del alumno.',
-            'dni.max' => 'Máximo 8 caracteres.',
             'nombres.required' => 'Ingresar nombres del alumno.',
             'apellidos.required' => 'Ingresar apellidos del alumno.',
             'codigomatricula.required' => 'Ingresar código de matrícula del alumno.',
@@ -128,8 +125,8 @@ class AlumnoController extends Controller
             'telefono.max' => 'Máximo 9 caracteres.',
             'correo.required' => 'Ingresar correo del alumno.'
         ]);
+        error_log("2");
         $alumno = Alumno::findOrFail($idalumno);
-        $alumno->dni=$request->dni;
         $alumno->nombres=$request->nombres;
         $alumno->apellidos=$request->apellidos;
         $alumno->codigomatricula=$request->codigomatricula;

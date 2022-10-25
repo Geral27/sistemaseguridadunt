@@ -13,12 +13,12 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                <form action="{{route('vehiculo.update', $vehiculo->idvehiculo)}}" method="GET" novalidate id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <form action="{{route('vehiculo.update', $vehiculo->id)}}" method="GET" novalidate id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     @method('put')
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Código</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigovehiculo" required="required" id="txtcodigovehiculo" value="{{$vehiculo->codigovehiculo}}" readonly/>              
+                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigovehiculo" required="required" id="txtcodigovehiculo" value="{{$vehiculo->codigovehiculo}}" readonly/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -30,17 +30,17 @@
                                                 <option value="No Vigente">Moto</option>
                                             </select>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Modelo</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="100" data-validate-words="2" name="modelo" required="required" id="txtmodelo" value="{{$vehiculo->modelo}}"/>              
+                                            <input class="form-control"  data-validate-length-range="100" data-validate-words="2" name="modelo" required="required" id="txtmodelo" value="{{$vehiculo->modelo}}"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Placa</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="7" data-validate-words="2" name="placa" required="required" id="txtplaca" value="{{$vehiculo->placa}}"/>              
+                                            <input class="form-control"  data-validate-length-range="7" data-validate-words="2" name="placa" required="required" id="txtplaca" value="{{$vehiculo->placa}}"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -52,14 +52,14 @@
                                                 <option value="No Vigente">No Vigente</option>
                                             </select>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Alumno</label>
                                         <div class="col-md-6 col-sm-6">
                                             <select id="facultad" class="form-control" required name="idalumno">
                                                 @if($alumno->count())
                                                 @foreach($alumno as $a)
-                                                    <option value="{{$a->idalumno}}">{{$a->nombres}} {{$a->apellidos}}</option>
+                                                    <option value="{{$a->id}}">{{$a->nombres}} {{$a->apellidos}}</option>
                                                 @endforeach
                                                 @else
                                             @endif
@@ -107,7 +107,7 @@
                                                 <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
                                                 <option value="Facultad de Enfermería">Facultad de Enfermería</option>
                                                 <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>                    
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>

@@ -10,7 +10,7 @@
                         <a type="button" class="btn btn-round btn-primary btn-sm" href="{{route('usuario.create')}}"><i class="fa fa-user"></i>  Nuevo Usuario</a>
                     </div>
                 </div>
-                <div class="clearfix"></div>               
+                <div class="clearfix"></div>
             </div>
             @if (session('datos'))
                 <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
@@ -24,7 +24,7 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                        <th hidden>#</th> 
+                        <th hidden>#</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Email</th>
@@ -34,17 +34,17 @@
                         <th></th>
                         </tr>
                     </thead>
-                    <tbody>  
+                    <tbody>
                         @foreach ($usuario as $usu)
                             <tr>
-                                <td hidden>{{$usu->idusuario}}</td>
+                                <td hidden>{{$usu->id}}</td>
                                 <td>{{$usu->nombres}}</td>
                                 <td>{{$usu->apellidos}}</td>
                                 <td>{{$usu->email}}</td>
                                 <td>{{$usu->rol->descripcion}}</td>
                                 <td>{{$usu->usuario}}</td>
-                                <td><a href="{{route('usuario.edit', $usu->idusuario)}}" type="button" id="btneditar"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="{{route('usuario.confirmar', $usu->idusuario)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="{{route('usuario.edit', $usu->id)}}" type="button" id="btneditar"><i class="fa fa-edit"></i></a></td>
+                                <td><a href="{{route('usuario.confirmar', $usu->id)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
                             </tr>
                             <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="elimalumno">
                                 <div class="modal-dialog modal-sm">
@@ -55,7 +55,7 @@
                                         </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{route('usuario.destroy', $usu->idusuario)}}" method="GET" novalidate id="editform">
+                                            <form action="{{route('usuario.destroy', $usu->id)}}" method="GET" novalidate id="editform">
                                                 @method('delete')
                                                 @csrf
                                                 <p>¿Desea eliminar el usuario?
@@ -65,7 +65,7 @@
                                                         <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('usuario/cancelar')}}"><i class="fa fa-arrow-left"></i>    No</a>
                                                     </div>
                                                 </div>
-                                            </form>                                  
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

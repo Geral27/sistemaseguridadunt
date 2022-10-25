@@ -13,12 +13,12 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                <form action="{{route('dispositivo.update', $dispositivo->iddispositivo)}}" method="GET" novalidate>
+                                <form action="{{route('dispositivo.update', $dispositivo->id)}}" method="GET" novalidate>
                                     @method('put')
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Codigo</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigodispositivo" required="required" id="txtcodigo" value="{{$dispositivo->codigodispositivo}}"  readonly/>                                    
+                                            <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigodispositivo" required="required" id="txtcodigo" value="{{$dispositivo->codigodispositivo}}"  readonly/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -31,7 +31,7 @@
                                                 <option value="Mouse">Mouse</option>
                                             </select>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Marca</label>
@@ -57,7 +57,7 @@
                                             <select id="facultad" class="form-control" required name="idalumno">
                                                 @if($alumno->count())
                                                     @foreach($alumno as $a)
-                                                        <option value="{{$a->idalumno}}">{{$a->nombres}} {{$a->apellidos}}</option>
+                                                        <option value="{{$a->id}}">{{$a->nombres}} {{$a->apellidos}}</option>
                                                     @endforeach
                                                     @else
                                                 @endif
@@ -105,7 +105,7 @@
                                                 <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
                                                 <option value="Facultad de Enfermería">Facultad de Enfermería</option>
                                                 <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>                    
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>
@@ -115,7 +115,7 @@
                                             <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    Cancelar</a>
                                         </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
                         </div>
                     </div>

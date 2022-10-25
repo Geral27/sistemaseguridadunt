@@ -18,7 +18,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Código</label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control"  data-validate-length-range="9" data-validate-words="2" name="codigodispositivo" required="required" id="txtcodigodispositivo"/>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -57,7 +57,7 @@
                                                 <option value="">---- Selecciona Alumno ----</option>
                                                 @if($alumno->count())
                                                     @foreach($alumno as $a)
-                                                        <option value="{{$a->idalumno}}">{{$a->nombres}} {{$a->apellidos}}</option>
+                                                        <option value="{{$a->id}}">{{$a->nombres}} {{$a->apellidos}}</option>
                                                     @endforeach
                                                     @else
                                                 @endif
@@ -105,7 +105,7 @@
                                                 <option value="Facultad de Ingeniería Química">Facultad de Ingeniería Química</option>
                                                 <option value="Facultad de Enfermería">Facultad de Enfermería</option>
                                                 <option value="Facultad de Ciencias Agropecuarias">Facultad de Ciencias Agropecuarias</option>
-                                            </select>                    
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>
