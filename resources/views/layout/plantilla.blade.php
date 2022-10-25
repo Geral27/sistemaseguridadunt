@@ -28,6 +28,27 @@
 
     <!-- Custom Theme Style -->
     <link href="/adminlte/build/css/custom.min.css" rel="stylesheet">
+
+    <!-- bootstrap-wysiwyg -->
+	<link href="/adminlte/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="/adminlte/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="/adminlte/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="/adminlte/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="/adminlte/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/adminlte/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="/adminlte/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="/adminlte/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/adminlte/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- PNotify -->
+    <link href="/adminlte/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="/adminlte/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="/adminlte/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -64,8 +85,10 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Mantenedores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Alumnos</a></li>
-                      <li><a href="form_advanced.html">Laptops</a></li>
+                      <li><a href="{{URL::to('/alumno')}}">Alumnos</a></li>
+                      <li><a href="{{URL::to('/vehiculo')}}">Vehículos</a></li>
+                      <li><a href="{{URL::to('/dispositivo')}}">Dispositivos Elestrónicos</a></li>
+                      <li><a href="{{URL::to('/usuario')}}">Usuarios</a></li>
                       
                     </ul>
                   </li>
@@ -198,93 +221,18 @@
           <!-- top tiles -->
           <div class="row" style="display: inline-block;" >
           <div class="tile_count">
-            <div class="col-md-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Alumnos</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-            <div class="col-md-4 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Laptops</span>
-              <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-4 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Verificaciones</span>
-              <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-            </div>
+            
+            
+            
             
           </div>
         </div>
           <!-- /top tiles -->
 
           <div class="row">
-            <div class="col-md-12 col-sm-12 ">
-              <div class="dashboard_graph">
-
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3>Registro de Laptops</h3>
-                  </div>
-                  <div class="col-md-6">
-                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                      <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-9 col-sm-9 ">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
-                </div>
-                <div class="col-md-3 col-sm-3  bg-white">
-                  <div class="x_title">
-                    <h2>Top Campaign Performance</h2>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="col-md-12 col-sm-12 ">
-                    <div>
-                      <p>Facebook Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Twitter Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12 ">
-                    <div>
-                      <p>Conventional Media</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Bill boards</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="clearfix"></div>
-              </div>
-            </div>
+            <section class="content">
+              @yield('contenido')
+            </section>
 
           </div>
           
@@ -301,7 +249,6 @@
         <!-- /footer content -->
       </div>
     </div>
-
     <!-- jQuery -->
     <script src="/adminlte/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -339,9 +286,44 @@
     <!-- bootstrap-daterangepicker -->
     <script src="/adminlte/vendors/moment/min/moment.min.js"></script>
     <script src="/adminlte/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
+    <!-- Datatables -->
+    <script src="/adminlte/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/adminlte/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="/adminlte/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="/adminlte/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="/adminlte/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="/adminlte/vendors/pdfmake/build/vfs_fonts.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="/adminlte/build/js/custom.min.js"></script>
-	
+    <script src="/adminlte//pnotify/dist/pnotify.js"></script>
+    <script src="/adminlte/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/adminlte/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+  <!-- bootstrap-wysiwyg -->
+	<script src="/adminlte/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="/adminlte/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="/adminlte/vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="/adminlte/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="/adminlte/vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="/adminlte/vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="/adminlte/vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="/adminlte/vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="/adminlte/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="/adminlte/vendors/starrr/dist/starrr.js"></script>
   </body>
 </html>
