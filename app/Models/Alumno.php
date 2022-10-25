@@ -11,7 +11,7 @@ class Alumno extends Model
     protected $table= 'alumnos';
     protected $primaryKey='idalumno';
     protected $fillabel = [
-        'idalumno', 'dni', 'nombres', 'apellidos', 'codigomatricula', 
+        'idalumno', 'dni', 'nombres', 'apellidos', 'codigomatricula',
         'facultad', 'escuela', 'telefono', 'correo', 'estado',
     ];
 }

@@ -62,3 +62,29 @@ Route::get('usuario/cancelar', function(){
 })->name('usuario/cancelar');
 Route::get('usuario/{idusuario}/confirmar', 'App\Http\Controllers\UsuarioController@confirmar')->name("usuario.confirmar");
 Route::get('usuario/{idusuario}/destroy', 'App\Http\Controllers\UsuariooController@destroy')->name("usuario.destroy");
+
+//Vigilante
+Route::get('vigilante', 'App\Http\Controllers\VigilanteController@index')->name("vigilante.index");
+Route::get('vigilante/create', 'App\Http\Controllers\VigilanteController@create')->name("vigilante.create");
+Route::get('vigilante/store', 'App\Http\Controllers\VigilanteController@store')->name("vigilante.store");
+
+Route::get('vigilante/{idvigilante}/update', 'App\Http\Controllers\VigilanteController@update')->name("vigilante.update");
+Route::get('vigilante/{idvigilante}/edit', 'App\Http\Controllers\VigilanteController@edit')->name("vigilante.edit");
+Route::get('cancelar', function(){
+    return redirect()->route('vigilante.index')->with('datos', 'Acción Cancelada');
+})->name('cancelar');
+Route::get('vigilante/{idvigilante}/confirmar', 'App\Http\Controllers\VigilanteController@confirmar')->name("vigilante.confirmar");
+Route::get('vigilante/{idvigilante}/destroy', 'App\Http\Controllers\VigilanteController@destroy')->name("vigilante.destroy");
+
+//Personal
+Route::get('personal', 'App\Http\Controllers\PersonalController@index')->name("personal.index");
+Route::get('personal/create', 'App\Http\Controllers\PersonalController@create')->name("personal.create");
+Route::get('personal/store', 'App\Http\Controllers\PersonalController@store')->name("personal.store");
+
+Route::get('personal/{idpersonal}/update', 'App\Http\Controllers\PersonalController@update')->name("personal.update");
+Route::get('personal/{idpersonal}/edit', 'App\Http\Controllers\PersonalController@edit')->name("personal.edit");
+Route::get('cancelar', function(){
+    return redirect()->route('personal.index')->with('datos', 'Acción Cancelada');
+})->name('cancelar');
+Route::get('personal/{idpersonal}/confirmar', 'App\Http\Controllers\PersonalController@confirmar')->name("personal.confirmar");
+Route::get('personal/{idpersonal}/destroy', 'App\Http\Controllers\PersonalController@destroy')->name("personal.destroy");

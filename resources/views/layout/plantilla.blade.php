@@ -18,7 +18,7 @@
     <link href="/adminlte/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="/adminlte/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	
+
     <!-- bootstrap-progressbar -->
     <link href="/adminlte/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
@@ -86,10 +86,12 @@
                   <li><a><i class="fa fa-edit"></i> Mantenedores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('/alumno')}}">Alumnos</a></li>
+                      <li><a href="{{URL::to('/personal')}}">Personal</a></li>
                       <li><a href="{{URL::to('/vehiculo')}}">Vehículos</a></li>
-                      <li><a href="{{URL::to('/dispositivo')}}">Dispositivos Elestrónicos</a></li>
+                      <li><a href="{{URL::to('/dispositivo')}}">Dispositivos Electrónicos</a></li>
                       <li><a href="{{URL::to('/usuario')}}">Usuarios</a></li>
-                      
+                      <li><a href="{{URL::to('/vigilante')}}">Vigilantes</a></li>
+
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Verificación <span class="fa fa-chevron-down"></span></a>
@@ -221,10 +223,10 @@
           <!-- top tiles -->
           <div class="row" style="display: inline-block;" >
           <div class="tile_count">
-            
-            
-            
-            
+
+
+
+
           </div>
         </div>
           <!-- /top tiles -->
@@ -235,7 +237,7 @@
             </section>
 
           </div>
-          
+
         </div>
         <!-- /page content -->
 
