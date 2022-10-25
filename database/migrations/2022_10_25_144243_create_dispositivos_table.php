@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('dispositivos', function (Blueprint $table) {
-            $table->id();
+            $table->id()->startingValue(3);
             $table->string('codigodispositivo');
             $table->string('tipodispositivo');
             $table->string('marca');
