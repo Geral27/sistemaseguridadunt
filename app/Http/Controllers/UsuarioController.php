@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Rol;
-use App\Models\Usuario;
+use App\Models\User;
 
 class UsuarioController extends Controller
 {
@@ -109,5 +110,38 @@ class UsuarioController extends Controller
         $usuario->estado='0';
         $usuario->save();
         return redirect()->route('usuario.index')->with('datos', 'Registro eliminado');
+    }
+
+    public function login(Request $request){
+        $data=request()->validate(
+            [
+                'email'=> 'required',
+                'password'=>'required'
+            ],
+            [
+                'email.required'=>'Ingresar Usuario',
+                'password.required'=>'Ingresar Contraseña',
+
+            ]
+            );
+            if(Auth::attempt($data)){
+                $con='OK';
+            }
+        $email=$request->get('email');
+        $query=User::where('email','=',$email)->get();
+        if($query->count()!=0){
+            $hashp=$query[0]->password;
+            $password=$request->get('password');
+            if(password_verify($password, $hashp)){
+                return view('inicio');
+            }
+            else{
+                return back()->withErrors(['password'=>'Contraseña inválida'])->withInput([request('password')]);
+            }
+        }
+        else{
+            return back()->withErrors(['email'=>'Email inválido'])->withInput([request('email')]);
+        }
+
     }
 }

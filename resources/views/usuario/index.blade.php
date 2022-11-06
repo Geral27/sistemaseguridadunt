@@ -37,14 +37,7 @@
                     <tbody>
                         @foreach ($usuario as $usu)
                             <tr>
-                                <td hidden>{{$usu->id}}</td>
-                                <td>{{$usu->nombres}}</td>
-                                <td>{{$usu->apellidos}}</td>
-                                <td>{{$usu->email}}</td>
-                                <td>{{$usu->rol->descripcion}}</td>
-                                <td>{{$usu->usuario}}</td>
-                                <td><a href="{{route('usuario.edit', $usu->id)}}" type="button" id="btneditar"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="{{route('usuario.confirmar', $usu->id)}}" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
+                                
                             </tr>
                             <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="elimalumno">
                                 <div class="modal-dialog modal-sm">

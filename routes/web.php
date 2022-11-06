@@ -16,8 +16,19 @@ use App\Http\Controllers\UsuarioController;
 */
 
 Route::get('/', function () {
-    return view('bienvenido');
+    return view('login');
 });
+
+Route::get('/registro', function () {
+    return view('registrar');
+});
+
+Route::get('/inicio', function () {
+    return view('inicio');
+});
+
+//Usuario
+Route::post('/', 'App\Http\Controllers\UsuarioController@login')->name("usuario.login");
 
 Route::get('alumno', 'App\Http\Controllers\AlumnoController@index')->name("alumno.index");
 Route::get('alumno/create', 'App\Http\Controllers\AlumnoController@create')->name("alumno.create");
