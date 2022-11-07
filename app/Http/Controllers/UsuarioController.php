@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rol;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 
 class UsuarioController extends Controller
 {
@@ -16,8 +19,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuario = Usuario::where('estado', '=', '1')->get();
-        return view('usuario.index', compact('usuario'));
+        $user = user::where('estado', '=', '1')->get();
+        return view('usuario.index', compact('user'));
     }
 
     /**
@@ -133,8 +136,16 @@ class UsuarioController extends Controller
             $hashp=$query[0]->password;
             $password=$request->get('password');
             if(password_verify($password, $hashp)){
-                return view('inicio');
-            }
+                if(Auth::user()->hasRole('administrador')){
+                    return view('inicio');
+                }elseif(Auth::user()->hasRole('alumno')){
+                    return view('inicio2');
+                }elseif(Auth::user()->hasRole('vigilante')){
+                    return view('inicio3');
+                }elseif(Auth::user()->hasRole('personal')){
+                    return view('inicio2');
+                }
+           }
             else{
                 return back()->withErrors(['password'=>'Contraseña inválida'])->withInput([request('password')]);
             }
@@ -143,5 +154,31 @@ class UsuarioController extends Controller
             return back()->withErrors(['email'=>'Email inválido'])->withInput([request('email')]);
         }
 
+    }
+
+    public function registrar(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email'=> 'required',
+            'password'=>'required',
+            'dni' => 'required',
+            'direccion'=> 'required',
+            'codigoi'=>'required'
+        ]);
+        Auth::login($user = User::create([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'dni' => $request->dni,
+            'direccion'=> $request->direccion,
+            'telefono'=> $request->telefono,
+            'turno'=> $request->turno,
+            'codigoi' => $request->codigoi,
+            'facultad'=> $request->facultad,
+            'escuela'=> $request->escuela,
+            'password'=> Hash:: make($request->password),
+        ]));
+        $user->attachRole($request->role_id);
+        event(new Registered($user));
+        return view('login');
     }
 }

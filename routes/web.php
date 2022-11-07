@@ -28,7 +28,13 @@ Route::get('/inicio', function () {
 });
 
 //Usuario
-Route::post('/', 'App\Http\Controllers\UsuarioController@login')->name("usuario.login");
+Route::post('/login', 'App\Http\Controllers\UsuarioController@login')->name("usuario.login");
+Route::post('/registrar', 'App\Http\Controllers\UsuarioController@registrar')->name("usuario.registrar");
+
+//Plantilla
+Route::group(['middleware' => ['auth']], function() { 
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+});
 
 Route::get('alumno', 'App\Http\Controllers\AlumnoController@index')->name("alumno.index");
 Route::get('alumno/create', 'App\Http\Controllers\AlumnoController@create')->name("alumno.create");

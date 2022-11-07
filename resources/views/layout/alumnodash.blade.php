@@ -74,21 +74,13 @@
               <a href="/inicio" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
             </li>
             <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Mantenedores</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{URL::to('/usuario')}}">Usuarios</a></li>
-                <li><a class="nav-link" href="index-0.html">Dispositivos Electrónicos</a></li>
-                <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i><span>Verificación</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Registros</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="index-0.html">Dispositivos Electrónicos</a></li>
                 <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
               </ul>
-            </li>            
-          </ul> 
+            </li>                    
+          </ul>  
           @endauth      
         </aside>
       </div>

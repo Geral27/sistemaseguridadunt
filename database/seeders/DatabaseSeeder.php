@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(LaratrustSeeder::class);
+        
         Alumno::create(['id'=>1,
             'dni'=>70821756,
             'nombres'=>'Geraldine Adela',
@@ -86,9 +87,7 @@ class DatabaseSeeder extends Seeder
             'escuela' => 'Escuela de Educación Primaria',
         ]);
 
-        Rol::create(['id' => 1,'descripcion' => 'Vigilante']);
-        Rol::create(['id' => 2,'descripcion' => 'Personal Administrativo']);
-        Rol::create(['id' => 3,'descripcion' => 'Alumno']);
+       
 
         Usuario::create(['id'=>1,
             'nombres'=>'Geraldine Adela',
