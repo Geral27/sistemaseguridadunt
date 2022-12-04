@@ -71,13 +71,13 @@
           @auth
           <ul class="sidebar-menu">
             <li class="dropdown">
-              <a href="/inicio" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
+              <a href="/inicio2" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown">z
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Registros</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="index-0.html">Dispositivos Electrónicos</a></li>
-                <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
+                <li><a class="nav-link" href="{{URL::to('/misdispositivos')}}">Dispositivos Electrónicos</a></li>
+                <li><a class="nav-link" href="{{URL::to('/misvehiculos')}}">Vehículos</a></li>
               </ul>
             </li>                    
           </ul>  

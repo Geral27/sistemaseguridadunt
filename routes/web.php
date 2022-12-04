@@ -27,6 +27,22 @@ Route::get('/inicio', function () {
     return view('inicio');
 });
 
+Route::get('/inicio2', function () {
+    return view('inicio2');
+});
+
+Route::get('/inicio3', function () {
+    return view('inicio3');
+});
+
+Route::get('/misdispositivos', function () {
+    return view('dispositivo/index2');
+});
+
+Route::get('/misvehiculos', function () {
+    return view('vehiculo/index2');
+});
+
 //Usuario
 Route::post('/login', 'App\Http\Controllers\UsuarioController@login')->name("usuario.login");
 Route::post('/registrar', 'App\Http\Controllers\UsuarioController@registrar')->name("usuario.registrar");
@@ -48,6 +64,8 @@ Route::get('alumno/{idalumno}/confirmar', 'App\Http\Controllers\AlumnoController
 Route::get('alumno/{idalumno}/destroy', 'App\Http\Controllers\AlumnoController@destroy')->name("alumno.destroy");
 
 Route::get('dispositivo', 'App\Http\Controllers\DispositivoController@index')->name("dispositivo.index");
+Route::get('show', 'App\Http\Controllers\DispositivoController@show')->name("dispositivo.show");
+
 Route::get('create', 'App\Http\Controllers\DispositivoController@create')->name("dispositivo.create");
 Route::get('store', 'App\Http\Controllers\DispositivoController@store')->name("dispositivo.store");
 Route::get('dispositivo/{iddispositivo}/update', 'App\Http\Controllers\DispositivoController@update')->name("dispositivo.update");
@@ -72,7 +90,7 @@ Route::get('vehiculo/{idvehiculo}/destroy', 'App\Http\Controllers\VehiculoContro
 Route::get('usuario', 'App\Http\Controllers\UsuarioController@index')->name("usuario.index");
 Route::get('usuario/create', 'App\Http\Controllers\UsuarioController@create')->name("usuario.create");
 Route::get('usuario/store', 'App\Http\Controllers\UsuarioController@store')->name("usuario.store");
-Route::get('usuario/{idusuario}/update', 'App\Http\Controllers\UsuarioController@update')->name("usuario.update");
+Route::patch('usuario/update/{id}', 'App\Http\Controllers\UsuarioController@update')->name("usuario.update");
 Route::get('usuario/{idusuario}/edit', 'App\Http\Controllers\UsuarioController@edit')->name("usuario.edit");
 Route::get('usuario/cancelar', function(){
     return redirect()->route('usuario.index')->with('datos', 'Acción Cancelada');

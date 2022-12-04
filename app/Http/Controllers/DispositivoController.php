@@ -59,9 +59,22 @@ class DispositivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($iddispositivo)
+    public function show()
+    // $iddispositivo
     {
-        //
+        $alumno = Alumno::all();
+        $dispositivo = new Dispositivo();
+        $dispositivo->codigodispositivo=$request->codigodispositivo;
+        $dispositivo->tipodispositivo=$request->tipodispositivo;
+        $dispositivo->marca=$request->marca;
+        $dispositivo->color=$request->color;
+        $dispositivo->serie=$request->serie;
+        $dispositivo->alumno_id=$request->idalumno;
+        $dispositivo->facultad=$request->facultad;
+        $dispositivo->escuela=$request->escuela;
+        $dispositivo->estado='1';
+        $dispositivo->save();
+        return redirect()->route('dispositivo.index2')->with('datos', 'Mis dispositivos');
     }
 
     /**

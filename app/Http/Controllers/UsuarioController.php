@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Rol;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -17,6 +17,7 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $user = user::where('estado', '=', '1')->get();
@@ -30,8 +31,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $rol = Rol::all();
-        return view('usuario.create',compact('rol'));   
+        return view('usuario.create');   
     }
 
     /**
@@ -42,17 +42,24 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = Rol::all();
-        $usuario = new Usuario();
-        $usuario->nombres=$request->nombres;
-        $usuario->apellidos=$request->apellidos;
-        $usuario->email=$request->email;
-        $usuario->idrol=$request->idrol;
-        $usuario->usuario=$request->usuario;
-        $usuario->contraseña=$request->contraseña;
-        $usuario->estado='1';
-        $usuario->save();
-        return redirect()->route('usuario.index')->with('datos', 'Registro nuevo guardado');
+        $user = new User;
+        $user->id = $request->input('user_id');
+        $user->dni = $request->input('dni');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->direccion = $request->input('direccion');
+        $user->telefono = $request->input('telefono');
+        $user->codigoi = $request->input('codigoi');
+        $user->facultad = $request->input('facultad');
+        $user->escuela = $request->input('escuela');
+        $user->turno = $request->input('turno');
+        $user->password = Hash::make($request->input('password'));
+        $user->estado = '1';
+        $user->save();
+
+        $user->attachRole($request->input('role_id'));
+        //event(new Registered($user));
+        return redirect('usuario')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -63,7 +70,6 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -72,12 +78,10 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($idusuario)
+    public function edit($id)
     {
-        $rol = Rol::all();
-        $usuario=Usuario::findOrFail($idusuario);
         
-        return view('usuario.edit', compact('usuario', 'rol'));
+        return view('usuario.edit');
     }
 
     /**
@@ -87,18 +91,12 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $idusuario)
+    public function update(Request $request, $id)
     {
-        $usuario = Usuario::findOrFail($idusuario);
-        $usuario->nombres=$request->nombres;
-        $usuario->apellidos=$request->apellidos;
-        $usuario->email=$request->email;
-        $usuario->idrol=$request->idrol;
-        $usuario->usuario=$request->usuario;
-        $usuario->contraseña=$request->contraseña;
-        $usuario->estado='1';
-        $usuario->save();
-        return redirect()->route('usuario.index')->with('datos', 'Registro nuevo guardado');
+        $user = User::findOrFail($id);
+        $input = $request->all();
+        $user->fill($input)->save();
+        return redirect('usuario')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -175,6 +173,7 @@ class UsuarioController extends Controller
             'codigoi' => $request->codigoi,
             'facultad'=> $request->facultad,
             'escuela'=> $request->escuela,
+            'estado' => $user->estado = '1',
             'password'=> Hash:: make($request->password),
         ]));
         $user->attachRole($request->role_id);

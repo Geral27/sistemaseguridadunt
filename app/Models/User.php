@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Role;
+use App\Models\User;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +19,9 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
+     * 
      */
+    protected $table= 'users';
     protected $fillable = [
         'name',
         'email',
@@ -50,4 +53,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'role_id', 'id');
+        #return $this->hasOne('App\Models\Rol','idrol','idrol');
+    }
+
 }

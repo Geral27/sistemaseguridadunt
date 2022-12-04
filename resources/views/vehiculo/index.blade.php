@@ -1,16 +1,32 @@
 @extends('layout.plantilla')
 @section('contenido')
+<div class="section-header">
+    <h1>Vehículos</h1>
+</div>
+@if (session('datos'))
+    <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+        {{session('datos')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <div class="row">
-    <div class="col-12 ">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Lista de Vehículos</h2>
-                <div class="pull-right">
-                    <div class="x_content">
-                        <a type="button" class="btn btn-round btn-primary btn-sm" href="{{route('vehiculo.create')}}"><i class="fa fa-car"></i> Nuevo Vehículo</a>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Lista de vehículos</h4>
+                <div class="card-header-form">
+                    <form>            
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>&nbsp;&nbsp;
+                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i> Nuevo Vehículo</a>
+                        </div>
+                    </form>
+                </div>         
             </div>
             @if (session('datos'))
                 <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">

@@ -1,80 +1,96 @@
-@extends('layout.plantilla')
-@section('contenido')
-<div class="container body">
-    <div class="main_container">
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 ">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Nuevo Usuario</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <br />
-                                <form action="{{route('usuario.store')}}" method="GET" novalidate id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Nombres</label>
-                                        <div class="col-md-9 col-sm-9">
-                                            <input class="form-control" name="nombres" data-validate-length-range="100" type="text" required="required" id="txtnombres" />
-                                        </div>
-                                    </div>
-                                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Apellidos</label>
-                                        <div class="col-md-9 col-sm-9">
-                                            <input class="form-control" name="apellidos" required="required" type="text" data-validate-length-range="100" id="txtapellidos" />
-                                        </div>
-                                    </div>
-                                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Email</label>
-                                        <div class="col-md-9 col-sm-9">
-                                            <input class="form-control" type="email" class='email' name="email" data-validate-linked='email' required='required' id="txtemail"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Rol</label>
-                                        <div class="col-md-9 col-sm-9">
-                                            <select id="idrol" class="form-control" required name="idrol">
-                                                <option value="">---- Selecciona Rol ----</option>
-                                                @if($rol->count())
-                                                    @foreach($rol as $a)
-                                                        <option value="{{$a->idrol}}">{{$a->descripcion}}</option>
-                                                    @endforeach
-                                                    @else
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Usuario</label>
-                                        <div class="col-md-9 col-sm-9">
-                                            <input class="form-control" name="usuario" data-validate-length-range="100" type="text" required="required" id="txtusuario" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Contraseña</label>
-                                        <div class="col-md-9 col-sm-9 ">
-                                            <input type="password" class="form-control" value="" name="contraseña">
-                                        </div>
-                                    </div>
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-9 col-sm-9  offset-md-4">
-                                            <button type='submit' class="btn btn-round btn-primary btn-sm"><i class="fa fa-save"></i>  Submit</button>
-                                            <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('usuario/cancelar')}}"><i class="fa fa-arrow-left"></i>    Cancelar</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="exampleModal" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Registrar Usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {!! Form::open(['url' => 'usuario/store', 'method' => 'get']) !!}
+            @csrf
+            <div class="row">
+                    {!! Form::number('user_id', '', ['class' => 'form-control', 'hidden']) !!}
+                <div class="form-group col-3">
+                    {!! Form::label('dni', 'Dni') !!}
+                    {!! Form::text('dni', '', ['class' => 'form-control', 'required']) !!}
+                </div>
+                <div class="form-group col-9">
+                    {!! Form::label('name', 'Nombres y Apellidos') !!}
+                    {!! Form::text('name', '', ['class' => 'form-control', 'required']) !!}
+                </div>                                        
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    {!! Form::label('email', 'Correo UNT o Email') !!}
+                    {!! Form::text('email', '', ['class' => 'form-control', 'required']) !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-9">
+                    {!! Form::label('direccion', 'Dirección') !!}
+                    {!! Form::text('direccion', '', ['class' => 'form-control', 'required']) !!}
+                </div>
+                <div class="form-group col-3">
+                    {!! Form::label('telefono', 'Teléfono') !!}
+                    {!! Form::text('telefono', '', ['class' => 'form-control', 'required']) !!}
+                </div>
+            </div>
+            <div class="form-divider">
+                Escoge el Rol
+            </div>
+            <div class="row">
+                <div class="form-group col-4" style="text-align:center;">
+                    <div class="form-check">
+                        {!! Form::label('alumno', 'Alumno', ['class' => 'form-check-label']) !!}
+                        {!! Form::radio('role_id', 'alumno',['class' => 'form-check-input', 'id' => 'alumno']) !!}
+                    </div>
+                </div>
+                <div class="form-group col-4" style="text-align:center;">
+                    <div class="form-check">
+                        {!! Form::label('personal', 'Personal UNT', ['class' => 'form-check-label']) !!}
+                        {!! Form::radio('role_id', 'personal', ['class' => 'form-check-input', 'id' => 'personal' ]) !!}
+                    </div>
+                </div>
+                <div class="form-group col-4" style="text-align:center;">
+                    <div class="form-check">
+                        {!! Form::label('vigilante', 'Vigilante', ['class' => 'form-check-label']) !!}
+                        {!! Form::radio('role_id', 'vigilante', ['class' => 'form-check-input', 'id' => 'vigilante']) !!}
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group col-6" id="codigoi" hidden>
+                    {!! Form::label('codigoi', 'Codigo Institucional') !!}
+                    {!! Form::text('codigoi', '', ['class' => 'form-control',]) !!}
+                </div>
+                <div class="form-group col-6" id="facultad" hidden>
+                    {!! Form::label('facultad', 'Facultad') !!}
+                    {!! Form::select('facultad', array('Option 1' => 'Option 1', 'Option 2' => 'Option 2', 'Option 3' => 'Option 3'),'', ['class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6" id="turno" hidden>
+                    {!! Form::label('turno', 'Turno') !!}
+                    {!! Form::select('turno', array('Mañana' => 'Mañana', 'Tarde' => 'Tarde', 'Noche' => 'Noche'),'', ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group col-6" id="escuela" hidden>
+                    {!! Form::label('escuela', 'Escuela') !!}
+                    {!! Form::select('escuela', array('Option 1' => 'Option 1', 'Option 2' => 'Option 2', 'Option 3' => 'Option 3'),'', ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group col-6" id="contraseña" hidden>
+                    {!! Form::label('password', 'Contraseña') !!}
+                    {!! Form::password('password', ['class' => 'form-control pwstrength']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            {!! Form::close() !!}
+        </div>
         </div>
     </div>
 </div>
-
-
-@endsection
 

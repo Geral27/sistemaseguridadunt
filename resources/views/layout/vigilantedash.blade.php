@@ -71,7 +71,7 @@
           @auth
           <ul class="sidebar-menu">
             <li class="dropdown">
-              <a href="/inicio" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
+              <a href="/inicio3" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i><span>Verificación</span></a>

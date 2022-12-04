@@ -1,7 +1,7 @@
 @extends('layout.plantilla')
 @section('contenido')
 <div class="section-header">
-    <h1>Dispositivos</h1>
+    <h1>Mi vehículo</h1>
 </div>
 @if (session('datos'))
     <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
@@ -15,7 +15,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>Lista de dispositivos</h4>
+                <h4>Lista de vehículos</h4>
                 <div class="card-header-form">
                     <form>            
                         <div class="input-group">
@@ -23,38 +23,64 @@
                             <div class="input-group-btn">
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
-                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i> Nuevo Dispositivo</a>
+                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i> Nuevo Vehículo</a>
                         </div>
                     </form>
                 </div>         
             </div>
-            @if (session('datos'))
-                <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-                    {{session('datos')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-            <div class="x_content">
+
+            <div class="x_content"><br>
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                         <th hidden>#</th>
                         <th>Código</th>
                         <th>Tipo</th>
-                        <th>Marca</th>
-                        <th>Color</th>
-                        <th>Serie</th>
-                        <th>Alumno</th>
-                        <th>Facultad</th>
-                        <th>Escuela</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>SOAT</th>
                         <th></th>
                         <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($dispositivo as $dis)
+                    <tbody>                        
+                            <tr>
+                                <td hidden></td>
+                                <td>0512</td>
+                                <td>Auto</td>
+                                <td>Kia Picanto Negro</td>
+                                <td>T3U-555</td>
+                                <td>Vigente</td>
+                                <td></td>
+                                <td><a href="" type="button" ><i class="fa fa-edit"></i></a></td>
+                                <td><a href="" type="button" data-toggle="modal" data-target="#elimalumno"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="elimalumno">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h4 class="modal-title" id="nuevoAlumno">Eliminar Vehículo</h4>
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="GET" novalidate id="editform">
+                                                @method('delete')
+                                                @csrf
+                                                <p>¿Desea eliminar el vehículo?
+                                                <div class="form-group">
+                                                    <div class="col-sm-6 offset-sm-3">
+                                                        <button type='submit' class="btn btn-round btn-primary btn-sm"><i class="fa fa-check"></i>  Sí</button>
+                                                        <a type='reset' class="btn btn-round btn-danger btn-sm" href="{{route('cancelar')}}"><i class="fa fa-arrow-left"></i>    No</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{-- @foreach ($dispositivo as $dis)
                             <tr>
                                 <td hidden>{{$dis->id}}</td>
                                 <td>{{$dis->codigodispositivo}}</td>
@@ -92,13 +118,29 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer text-right">
+                <nav class="d-inline-block">
+                    <ul class="pagination mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
 </div>
 
 @endsection
-
