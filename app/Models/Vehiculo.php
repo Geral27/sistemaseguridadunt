@@ -9,10 +9,9 @@ class Vehiculo extends Model
 {
     public $timestamps = false;
     protected $table= 'vehiculos';
-    protected $primaryKey = 'idvehiculo';
     protected $fillable = [
         'codigovehiculo', 'tipovehiculo' , 'modelo', 'placa', 'soat',
-        'facultad', 'escuela', 'id_user' , 'estado',
+        'facultad', 'escuela', 'user_id' , 'estado',
     ];
 
     public function user()

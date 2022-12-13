@@ -11,6 +11,7 @@ class VerificarDis extends Model
     protected $table= 'verificardisp';
     protected $primaryKey = 'idvdisp';
     protected $fillable = [
-        'iddispositivo', 'fechacrear', 'iduser', 'estado',
+        'dispositivo_id', 'user_id', 'estado',
     ];
+
 }

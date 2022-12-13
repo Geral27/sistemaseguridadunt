@@ -17,7 +17,7 @@
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/components.css"> 
+  <link rel="stylesheet" href="assets/css/components.css">
 
   <style>
   </style>
@@ -54,7 +54,7 @@
             <div class="d-sm-none d-lg-inline-block">Hola, {{auth()->user()->name}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item has-icon" style="text-align: center;">
-                
+
               </a>
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
@@ -101,9 +101,9 @@
                 <li><a class="nav-link" href="{{URL::to('/verificar')}}">Dispositivos Electrónicos</a></li>
                 <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
               </ul>
-            </li>            
-          </ul> 
-          @endauth      
+            </li>
+          </ul>
+          @endauth
         </aside>
       </div>
 
@@ -113,16 +113,16 @@
           @yield('contenido')
         </section>
       </div>
-      
+
        @include('usuario.create')
-      
+
       @yield('modales')
       <footer class="main-footer">
         <div class="footer-left">
           Copyright &copy; 2022 <div class="bullet"></div> Universidad Nacional de Trujillo</a>
         </div>
         <div class="footer-right">
-          
+
         </div>
       </footer>
     </div>
@@ -136,7 +136,7 @@
   <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="assets/modules/moment.min.js"></script>
   <script src="assets/js/stisla.js"></script>
-  
+
   <!-- JS Libraies -->
   <script src="assets/modules/jquery.sparkline.min.js"></script>
   <script src="assets/modules/chart.min.js"></script>
@@ -144,17 +144,19 @@
   <script src="assets/modules/summernote/summernote-bs4.js"></script>
   <script src="assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
   <script src="assets/modules/prism/prism.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- Page Specific JS File -->
   <script src="assets/js/page/index.js"></script>
   <script src="assets/js/page/bootstrap-modal.js"></script>
-  
+
   <!-- Template JS File -->
   <script src="assets/js/scripts.js"></script>
   <script src="assets/js/custom.js"></script>
+  @yield('scripts')
   <script>
     $(document).ready(function() {
-      $("input[name=role_id]").click(function () { 
+      $("input[name=role_id]").click(function () {
         var value = $("input:radio[name=role_id]:checked").val();
         if (value == 'alumno') {
             $("#codigoi").attr('hidden', false);
@@ -177,9 +179,9 @@
             $("#facultad").attr('hidden', true);
             $("#escuela").attr('hidden', true);
         }
-      });           
-    }); 
-    $("#btnNuevo").click(function () {          
+      });
+    });
+    $("#btnNuevo").click(function () {
       $("input:radio[name=role_id]").attr("checked", false);
       var value = $("input:radio[name=role_id]:checked").val();
       if (value == 'alumno') {
@@ -199,18 +201,18 @@
         $("#turno").attr('hidden', true);
       }
       if (value == 'vigilante') {
-        
+
         $("#codigoi").attr('hidden', true);
         $("#facultad").attr('hidden', true);
         $("#escuela").attr('hidden', true);
         $("#contraseña").attr('hidden', true);
         $("#turno").attr('hidden', true);
       }
-    });  
-    $(".btneditar").click(function () { 
+    });
+    $(".btneditar").click(function () {
       var idUser = $(this).parent().data('id');
       console.log(idUser)
-      var texto = $("#texto-"+idUser).val() 
+      var texto = $("#texto-"+idUser).val()
       console.log(texto)
       if (texto == 'Alumno') {
         $(".codigoi").prop('hidden', false);
@@ -232,7 +234,7 @@
       }
       /* $("input:radio[name=role_id]").attr("checked", false);    */
       $("input:radio[name=role_id_"+idUser+"]").val([texto.toLowerCase()])
-      $("input[type=radio]").click(function () { 
+      $("input[type=radio]").click(function () {
         var input = $(this).attr("name");
         var idUser = input.split("_")[2];
         var value = $("input:radio[name="+input+"]:checked").val();
@@ -255,10 +257,10 @@
           $(".escuela").attr('hidden', true).val("");
           $(".turno").attr('hidden', false).val("");
         }
-      });       
-    });     
-    
+      });
+    });
+
   </script>
-        
+
 </body>
 </html>

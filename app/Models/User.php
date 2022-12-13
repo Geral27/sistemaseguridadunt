@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use App\Models\Role;
-use App\Models\User;
 use App\Models\Dispositivo;
 use App\Models\Vehiculo;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,7 +20,7 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     * 
+     *
      */
     protected $table= 'users';
     protected $fillable = [
@@ -35,6 +34,7 @@ class User extends Authenticatable
         'turno',
         'facultad',
         'escuela',
+        'estado',
     ];
 
     /**
@@ -62,12 +62,12 @@ class User extends Authenticatable
         #return $this->hasOne('App\Models\Rol','idrol','idrol');
     }
 
-    public function dispositivo()
+    public function dispositivos()
     {
-        return $this->hasMany(Dispositivo::class,'iddispositivo','iddispositivo');
+        return $this->hasMany(Dispositivo::class);
     }
-    public function vehiculo()
+    public function vehiculos()
     {
-        return $this->hasMany(Vehiculo::class,'idvehiculo','idvehiculo');
+        return $this->hasMany(Vehiculo::class);
     }
 }

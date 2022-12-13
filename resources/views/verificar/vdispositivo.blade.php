@@ -1,8 +1,7 @@
 @extends('layout.plantilla')
-@include('verificar.create1')
 @section('contenido')
 <div class="section-header">
-    <h1>Verficar Dispositivos</h1>
+    <h1>Verificar Dispositivos</h1>
 </div>
 @if (session('datos'))
     <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
@@ -18,7 +17,7 @@
             <div class="card-header">
                 <h4>Lista de Dispositivos Verificados</h4>
                 <div class="card-header-form">
-                    <form>            
+                    <form>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar">
                             <div class="input-group-btn">
@@ -27,7 +26,7 @@
                             <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#crearvdis"><i class="fas fa-list"></i> Nueva Verificación</a>
                         </div>
                     </form>
-                </div>         
+                </div>
             </div>
             @if (session('datos'))
                 <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
@@ -40,7 +39,6 @@
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-striped" id="tabla">
-                        
                             <th hidden>#</th>
                             <th>Usuario</th>
                             <th>Tipo</th>
@@ -52,9 +50,7 @@
                             <th></th>
                             <th></th>
                         </tr>
-                             
-                        
-                        <tr>    
+                        <tr>
                                 <td hidden>1</td>
                                 <td>Leslie Eliana Roncal Sánchez</td>
                                 <td>Laptop</td>
@@ -64,11 +60,11 @@
                                 <td>2022-12-12</td>
                                 <td>Jose Antonio Roncal Monzon</td>
                                 <td >
-                                    <a href="#" data-toggle="modal" data-target="#edit" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                                    <a href="#" data-toggle="modal" data-target="#edit" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>
                                 </td>
                                 <td><a href="#" type="button" data-toggle="modal" data-target="#destroy" style="color: red;"><i class="fa fa-trash"></i></a></td>
                             </tr>
-                            <tr>    
+                            <tr>
                                 <td hidden>1</td>
                                 <td>Edward sanchez verastegui</td>
                                 <td>Tablet</td>
@@ -78,7 +74,7 @@
                                 <td>2022-12-12</td>
                                 <td>Jose Antonio Roncal Monzon</td>
                                 <td >
-                                    <a href="#" data-toggle="modal" data-target="#edit" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                                    <a href="#" data-toggle="modal" data-target="#edit" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>
                                 </td>
                                 <td><a href="#" type="button" data-toggle="modal" data-target="#destroy" style="color: red;"><i class="fa fa-trash"></i></a></td>
                             </tr>
@@ -106,6 +102,9 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('modales')
+    @include('verificar.create1')
 @endsection
 

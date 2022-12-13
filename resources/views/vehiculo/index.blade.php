@@ -1,5 +1,4 @@
 @extends('layout.plantilla')
-@include('vehiculo.create')
 @section('contenido')
 
 
@@ -20,7 +19,7 @@
             <div class="card-header">
                 <h4>Lista de vehículos</h4>
                 <div class="card-header-form">
-                    <form>            
+                    <form>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar">
                             <div class="input-group-btn">
@@ -29,7 +28,7 @@
                             <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#crearve"><i class="fa fa-car"></i> Nuevo Vehículo</a>
                         </div>
                     </form>
-                </div>         
+                </div>
             </div>
             <div class="x_content">
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -51,7 +50,7 @@
                     <tbody>
                         @foreach ($vehiculo as $ve)
                             <tr>
-                                <td hidden>{{$ve->idvehiculo}}</td>
+                                <td hidden>{{$ve->id}}</td>
                                 <td>{{$ve->codigovehiculo}}</td>
                                 <td>{{$ve->tipovehiculo}}</td>
                                 <td>{{$ve->modelo}}</td>
@@ -60,10 +59,10 @@
                                 <td>{{$ve->id_user}}</td>
                                 <td>{{$ve->facultad}}</td>
                                 <td>{{$ve->escuela}}</td>
-                                <td data-id="{{$ve->idvehiculo}}">
-                                    <a href="#" data-toggle="modal" data-target="#editve{{$ve->idvehiculo}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                                <td data-id="{{$ve->id}}">
+                                    <a href="#" data-toggle="modal" data-target="#editve{{$ve->id}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>
                                 </td>
-                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroyve{{$ve->idvehiculo}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroyve{{$ve->id}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -93,6 +92,7 @@
 @endsection
 
 @section('modales')
+    @include('vehiculo.create')
     @foreach ($vehiculo as $ve)
         @include('vehiculo.edit')
     @endforeach

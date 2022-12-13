@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dispositivo;
 use Illuminate\Http\Request;
 use App\Models\VerificarDis;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class VerificardispController extends Controller
 {
@@ -17,7 +20,7 @@ class VerificardispController extends Controller
         $verificardis = VerificarDis::get();
         return view('verificar.vdispositivo', compact('verificardis'));
     }
-    
+
     public function index2()
     {
         //
@@ -31,7 +34,8 @@ class VerificardispController extends Controller
      */
     public function create()
     {
-        return view('verificar.create1');  
+        $user = User::all();
+        return view('verificar.create1', compact('user'));
     }
 
     /**
@@ -42,7 +46,12 @@ class VerificardispController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verificardis = new VerificarDis();
+        $verificardis->dispositivo_id = $request->input('iddispositivo');
+        $verificardis->user_id = $request->input('id_user');
+        $verificardis->estado = '1';
+        $verificardis->save();
+        return redirect('verificar')->with('datos', 'Registro nuevo guardado');
     }
 
     /**
@@ -51,9 +60,14 @@ class VerificardispController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($iddis)
     {
-        //
+        try {
+            $dis = Dispositivo::where('id',$iddis)->with("user")->get();
+            return $dis;
+        } catch (\Throwable $th) {
+            return new JsonResponse(["message" => 'Dispositivo no encontrado'], 404);
+        }
     }
 
     /**

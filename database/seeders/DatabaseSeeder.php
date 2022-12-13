@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(LaratrustSeeder::class);
-        
+
         Alumno::create(['id'=>1,
             'dni'=>70821756,
             'nombres'=>'Geraldine Adela',
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Dispositivo::create(['id' => 1,
+       /*  Dispositivo::create(['id' => 1,
             'codigodispositivo' => 1,
             'tipodispositivo' => 'Tablet',
             'marca' => 'Lenovo',
@@ -86,33 +86,8 @@ class DatabaseSeeder extends Seeder
             'facultad' => 'Facultad de Ciencias Sociales',
             'escuela' => 'Escuela de Educación Primaria',
         ]);
+ */
 
-       
-
-        Usuario::create(['id'=>1,
-            'nombres'=>'Geraldine Adela',
-            'apellidos'=>'Roncal Sánchez',
-            'email'=>'groncal@unitru.edu.pe',
-            'rol_id'=>1,
-            'usuario'=>'70821756',
-            'contraseña'=>'70821756',
-        ]);
-        Usuario::create(['id'=>2,
-            'nombres'=>'Ericka Paola',
-            'apellidos'=>'Salvador Llaro',
-            'email'=>'esalvador@unitru.edu.pe',
-            'rol_id'=>2,
-            'usuario'=>'70821757',
-            'contraseña'=>'70821757',
-        ]);
-        Usuario::create(['id'=>3,
-            'nombres'=>'Leslie Eliana',
-            'apellidos'=>'Roncal Sánchez',
-            'email'=>'lroncal@unitru.edu.pe',
-            'rol_id'=>3,
-            'usuario'=>'70821754',
-            'contraseña'=>'70821754',
-        ]);
 
         Vehiculo::create(['id'=>1,
             'codigovehiculo'=> 'A001',

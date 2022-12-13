@@ -59,7 +59,7 @@ class VehiculoController extends Controller
         $vehiculo->soat=$request->input('soat');
         $vehiculo->facultad=$request->input('facultad');
         $vehiculo->escuela=$request->input('escuela');
-        $vehiculo->id_user = $request->input('id_user');
+        $vehiculo->user_id = $request->input('id_user');
         $vehiculo->estado='1';
         $vehiculo->save();
         return redirect('vehiculo')->with('datos', 'Registro nuevo guardado');
@@ -100,7 +100,7 @@ class VehiculoController extends Controller
     public function update(Request $request, $idvehiculo)
     {
         $vehiculo=Vehiculo::findOrFail($idvehiculo);
-        $input = $request->all(); 
+        $input = $request->all();
         $vehiculo->fill($input)->save();
         return redirect('vehiculo')->with('datos', 'Registro nuevo guardado');
     }

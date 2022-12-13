@@ -49,7 +49,7 @@ Route::post('/login', 'App\Http\Controllers\UsuarioController@login')->name("usu
 Route::post('/registrar', 'App\Http\Controllers\UsuarioController@registrar')->name("usuario.registrar");
 
 //Plantilla
-Route::group(['middleware' => ['auth']], function() { 
+Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 });
 
@@ -127,4 +127,6 @@ Route::get('personal/{idpersonal}/destroy', 'App\Http\Controllers\PersonalContro
 //Verificar
 Route::get('verificar', 'App\Http\Controllers\VerificardispController@index')->name("verificar.vdispositivo");
 Route::get('verificarv', 'App\Http\Controllers\VerificardispController@index2')->name("verificar.vvehiculo");
-Route::get('verificar/create', 'App\Http\Controllers\DispositivoController@create')->name("verificar.create1");
+Route::get('verificar/create', 'App\Http\Controllers\VerificardispController@create')->name("verificar.create1");
+Route::get('verificar/store', 'App\Http\Controllers\VerificardispController@store')->name("verificar.store");
+Route::get('verificar/{iddis}/buscar', 'App\Http\Controllers\VerificardispController@show')->name("verificar.show");

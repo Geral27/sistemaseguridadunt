@@ -1,6 +1,5 @@
 @extends('layout.plantilla')
 
-
 @section('contenido')
 <div class="section-header">
     <h1>Dispositivos</h1>
@@ -19,7 +18,7 @@
             <div class="card-header">
                 <h4>Lista de dispositivos</h4>
                 <div class="card-header-form">
-                    <form>            
+                    <form>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar">
                             <div class="input-group-btn">
@@ -28,7 +27,7 @@
                             <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#creardis"><i class="far fa-user"></i> Nuevo Dispositivo</a>
                         </div>
                     </form>
-                </div>         
+                </div>
             </div>
             <div class="x_content">
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -56,13 +55,13 @@
                                 <td>{{$dis->marca}}</td>
                                 <td>{{$dis->color}}</td>
                                 <td>{{$dis->serie}}</td>
-                                <td>{{$dis->id_user}}</td>
+                                <td>{{$dis->user->name}}</td>
                                 <td>{{$dis->facultad}}</td>
                                 <td>{{$dis->escuela}}</td>
-                                <td data-id="{{$dis->iddispositivo}}">
-                                    <a href="#" data-toggle="modal" data-target="#editdis{{$dis->iddispositivo}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                                <td data-id="{{$dis->id}}">
+                                    <a href="#" data-toggle="modal" data-target="#editdis{{$dis->id}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>
                                 </td>
-                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroydis{{$dis->iddispositivo}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroydis{{$dis->id}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -85,15 +84,16 @@
                     </nav>
                 </div>
             </div>
-            
+
         </div>
-        
+
     </div>
 </div>
 
 @endsection
 
 @section('modales')
+    @include('dispositivo.create')
     @foreach ($dispositivo as $dis)
         @include('dispositivo.edit')
     @endforeach

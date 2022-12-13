@@ -27,7 +27,7 @@ class DispositivoController extends Controller
             }
         }
         $alumnos = array_combine($alumnos_id,$alumnos_name);
-        $dispositivo = Dispositivo::where('estado', '=', '1')->get();
+        $dispositivo = Dispositivo::where('estado', '=', '1')->with('user')->get();
         return view('dispositivo.index', compact('dispositivo','alumnos'));
     }
 
@@ -39,7 +39,7 @@ class DispositivoController extends Controller
     public function create()
     {
         $user = User::all();
-        return view('dispositivo.create', compact('user'));   
+        return view('dispositivo.create', compact('user'));
         //$alumno = Alumno::all();
         //return view('dispositivo.create',compact('alumno'));
     }
@@ -52,17 +52,16 @@ class DispositivoController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::where('estado','=','1')->get();
         $dispositivo = new Dispositivo();
         $dispositivo->codigodispositivo = $request->input('codigodispositivo');
         $dispositivo->tipodispositivo = $request->input('tipodispositivo');
         $dispositivo->marca = $request->input('marca');
         $dispositivo->color = $request->input('color');
         $dispositivo->serie = $request->input('serie');
-        $dispositivo->id_user = $request->input('id_user');
         $dispositivo->facultad = $request->input('facultad');
         $dispositivo->escuela = $request->input('escuela');
         $dispositivo->estado = '1';
+        $dispositivo->user_id = $request->input('id_user');
         $dispositivo->save();
         return redirect('dispositivo')->with('datos', 'Registro nuevo guardado');
     }
@@ -115,8 +114,8 @@ class DispositivoController extends Controller
     public function update(Request $request, $iddispositivo)
     {
         $dispositivo = Dispositivo::findOrFail($iddispositivo);
-        $input = $request->all(); 
-        //$user->attachRole($request->input('role_id'));      
+        $input = $request->all();
+        //$user->attachRole($request->input('role_id'));
         $dispositivo->fill($input)->save();
         return redirect('dispositivo')->with('datos', 'Registro nuevo guardado');
     }

@@ -19,6 +19,14 @@ return new class extends Migration
             $table->string('email', 190);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('dni');
+            $table->string('direccion');
+            $table->string('codigoi');
+            $table->string('telefono');
+            $table->string('turno');
+            $table->string('facultad');
+            $table->string('escuela');
+            $table->string('estado');
             $table->rememberToken();
             $table->timestamps();
         });

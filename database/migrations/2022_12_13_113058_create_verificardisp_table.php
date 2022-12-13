@@ -13,21 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dispositivos', function (Blueprint $table) {
-            $table->id()->startingValue(3);
-            $table->string('codigodispositivo');
-            $table->string('tipodispositivo');
-            $table->string('marca');
-            $table->string('color');
-            $table->string('serie');
+        Schema::create('verificardisp', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('dispositivo_id');
+            $table->foreign('dispositivo_id')
+                    ->references('id')
+                    ->on('dispositivos')
+                    ->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
-            $table->string('facultad');
-            $table->string('escuela');
-            $table->smallInteger('estado')->default(1)->comment('0: inactivo; 1: activo;');
+            $table->string('estado');
             $table->timestamps();
         });
     }
@@ -39,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dispositivos');
+        Schema::dropIfExists('verificardisp');
     }
 };
