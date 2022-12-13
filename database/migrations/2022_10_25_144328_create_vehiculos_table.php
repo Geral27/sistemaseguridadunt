@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('soat');
             $table->string('facultad');
             $table->string('escuela');
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id')
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
                     ->references('id')
-                    ->on('alumnos')
+                    ->on('users')
                     ->onDelete('cascade');
             $table->smallInteger('estado')->default(1)->comment('0: inactivo; 1: activo;');
             $table->timestamps();
