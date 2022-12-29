@@ -195,6 +195,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        'PDF'=>Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 

@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
  */
 
 
-        Vehiculo::create(['id'=>1,
+        /*Vehiculo::create(['id'=>1,
             'codigovehiculo'=> 'A001',
             'tipovehiculo'=> 'Vigente',
             'modelo'=> 'Nissan',
@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
             'facultad'=> 'Facultad de Medicina',
             'escuela'=> 'Escuela de Medicina',
             'alumno_id'=> 1,
-        ]);
+        ]);*/
 
 
     }

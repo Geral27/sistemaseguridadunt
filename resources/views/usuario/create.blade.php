@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="form-group col-6" id="turno" hidden>
                     {!! Form::label('turno', 'Turno') !!}
-                    {!! Form::select('turno', array('Seleccione un turno' => 'Seleccione un turno','Mañana' => 'Mañana', 'Tarde' => 'Tarde', 'Noche' => 'Noche'),'', ['class' => 'form-control']) !!}
+                    {!! Form::select('turno', array('' => 'Seleccione un turno','Mañana' => 'Mañana', 'Tarde' => 'Tarde', 'Noche' => 'Noche'),'', ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-6" id="escuela" hidden>
                     {!! Form::label('escuela', 'Escuela') !!}

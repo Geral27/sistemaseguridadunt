@@ -23,52 +23,58 @@
                             <div class="input-group-btn">
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
-                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal" id="btnNuevo"><i class="far fa-user"></i> Nuevo Usuario</a>
+                            <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#exampleModal" id="btnNuevo"><i class="far fa-user"></i> Nuevo Usuario</a>&nbsp;
+                            <a href="{{route('usuario.pdf')}}" class="btn btn-icon icon-left btn-warning"  ><i class="far fa-file"></i> Reporte PDF</a>
                         </div>
                     </form>
                 </div>         
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped" id="tabla">
-                    <tr>
-                        <th hidden>#</th>
-                        <th hidden>Dni</th>
-                        <th>Nombres</th>
-                        <th>Rol</th>
-                        <th>Código Institucional</th>
-                        <th>Email</th>
-                        <th>Facultad</th>
-                        <th>Escuela</th>
-                        <th hidden>Dirección</th>
-                        <th hidden>Teléfono</th>
-                        <th>Turno</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    @foreach ($user as $us)
-                    <tr>               
-                        <td hidden>{{$us->id}}</td>
-                        <td hidden>{{$us->dni}}</td>
-                        <td>{{$us->name}}</td>
-                        <td>
-                        @foreach ($us->roles as $rol)
-                            <p>{{$rol->display_name}}</p>    
+                    <table class="table table-striped " id="tabla1">
+                        <thead>
+                            <tr>
+                                <th hidden>#</th>
+                                <th hidden>Dni</th>
+                                <th>Nombres</th>
+                                <th>Rol</th>
+                                <th>Código Institucional</th>
+                                <th>Email</th>
+                                <th>Facultad</th>
+                                <th>Escuela</th>
+                                <th hidden>Dirección</th>
+                                <th hidden>Teléfono</th>
+                                <th>Turno</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                        @foreach ($user as $us)
+                        <tr>               
+                            <td hidden>{{$us->id}}</td>
+                            <td hidden>{{$us->dni}}</td>
+                            <td>{{$us->name}}</td>
+                            <td>
+                            @foreach ($us->roles as $rol)
+                                <p>{{$rol->display_name}}</p>    
+                            @endforeach
+                            </td>
+                            <td>{{$us->codigoi}}</td>
+                            <td>{{$us->email}}</td>
+                            <td>{{$us->facultad}}</td>
+                            <td>{{$us->escuela}}</td>
+                            <td hidden>{{$us->direccion}}</td>
+                            <td hidden>{{$us->telefono}}</td>
+                            <td>{{$us->turno}}</td>
+                            <td data-id="{{$us->id}}">
+                                <a href="#" data-toggle="modal" data-target="#edit{{$us->id}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
+                            </td>
+                            <td><a href="#" type="button" data-toggle="modal" data-target="#destroy{{$us->id}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
+                        </tr>
                         @endforeach
-                        </td>
-                        <td>{{$us->codigoi}}</td>
-                        <td>{{$us->email}}</td>
-                        <td>{{$us->facultad}}</td>
-                        <td>{{$us->escuela}}</td>
-                        <td hidden>{{$us->direccion}}</td>
-                        <td hidden>{{$us->telefono}}</td>
-                        <td>{{$us->turno}}</td>
-                        <td data-id="{{$us->id}}">
-                            <a href="#" data-toggle="modal" data-target="#edit{{$us->id}}" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>                             
-                        </td>
-                        <td><a href="#" type="button" data-toggle="modal" data-target="#destroy{{$us->id}}" style="color: red;"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                    @endforeach
                     </table>
                 </div>
             </div>
@@ -100,7 +106,6 @@
         @include('usuario.edit')
     @endforeach
 @endsection
-
 
 
 

@@ -26,6 +26,7 @@
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
                             <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#crearve"><i class="fa fa-car"></i> Nuevo Vehículo</a>
+                            <a href="{{route('vehiculo.pdf')}}" class="btn btn-icon icon-left btn-warning"  ><i class="far fa-file"></i> Reporte PDF</a>
                         </div>
                     </form>
                 </div>
@@ -56,7 +57,7 @@
                                 <td>{{$ve->modelo}}</td>
                                 <td>{{$ve->placa}}</td>
                                 <td>{{$ve->soat}}</td>
-                                <td>{{$ve->id_user}}</td>
+                                <td>{{$ve->user->name}}</td>
                                 <td>{{$ve->facultad}}</td>
                                 <td>{{$ve->escuela}}</td>
                                 <td data-id="{{$ve->id}}">

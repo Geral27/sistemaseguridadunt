@@ -4,6 +4,8 @@ namespace App\Models;
 use App\Models\Role;
 use App\Models\Dispositivo;
 use App\Models\Vehiculo;
+use App\Models\VerificarDis;
+use App\Models\VerificarVe;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -69,5 +71,13 @@ class User extends Authenticatable
     public function vehiculos()
     {
         return $this->hasMany(Vehiculo::class);
+    }
+    public function verificardis()
+    {
+        return $this->hasMany(VerificarDis::class);
+    }
+    public function verificarves()
+    {
+        return $this->hasMany(VerificarVe::class);
     }
 }

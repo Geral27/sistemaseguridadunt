@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use PDF;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class UsuarioController extends Controller
 {
@@ -18,7 +20,7 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
         $user = user::where('estado', '=', '1')->get();
         return view('usuario.index', compact('user'));
@@ -137,7 +139,54 @@ class UsuarioController extends Controller
             $password=$request->get('password');
             if(password_verify($password, $hashp)){
                 if(Auth::user()->hasRole('administrador')){
-                    return view('inicio');
+                    $chart_options = [
+                        'chart_title' => 'Total de Usuarios',
+                        'report_type' => 'group_by_date',
+                        'model' => 'App\Models\User',
+                        'group_by_field' => 'created_at',
+                        'group_by_period' => 'day',
+                        'chart_type' => 'bar',
+                   ];
+                   $chart = new LaravelChart($chart_options);
+                   $chart_options1 = [
+                        'chart_title' => 'Total de Dispositivos',
+                        'report_type' => 'group_by_string',
+                        'model' => 'App\Models\Dispositivo',
+                        'group_by_field' => 'tipodispositivo',
+                        'chart_type' => 'bar',
+                    ];
+                    $chart1 = new LaravelChart($chart_options1);
+                    $chart_options2 = [
+                        'chart_title' => 'Total de Vehículos',
+                        'report_type' => 'group_by_string',
+                        'model' => 'App\Models\Vehiculo',
+                        'group_by_field' => 'tipovehiculo',
+                        'chart_type' => 'bar',
+                    ];
+                    $chart2 = new LaravelChart($chart_options2);
+                    $settings1 = [
+                        'chart_title'           => 'Verfificaciones Dispositivos',
+                        'chart_type'            => 'line',
+                        'report_type'           => 'group_by_date',
+                        'model'                 => 'App\Models\VerificarDis',
+                        'group_by_field'        => 'created_at',
+                        'group_by_period'       => 'day',
+                        'aggregate_function'    => 'count',
+                        'filter_field'          => 'created_at',
+                    ];
+                    $settings2 = [
+                        'chart_title'           => 'Verfificaciones Vehículos',
+                        'chart_type'            => 'line',
+                        'report_type'           => 'group_by_date',
+                        'model'                 => 'App\Models\VerificarVe',
+                        'group_by_field'        => 'created_at',
+                        'group_by_period'       => 'day',
+                        'aggregate_function'    => 'count',
+                        'filter_field'          => 'created_at',
+                        // ... other values identical to $settings1
+                    ];
+                    $chart3 = new LaravelChart($settings1, $settings2);
+                    return view('inicio', compact('chart', 'chart1', 'chart2', 'chart3'));
                 }elseif(Auth::user()->hasRole('alumno')){
                     return view('inicio2');
                 }elseif(Auth::user()->hasRole('vigilante')){
@@ -181,5 +230,12 @@ class UsuarioController extends Controller
         $user->attachRole($request->role_id);
         event(new Registered($user));
         return view('login');
+    }
+
+    public function descargar()
+    {
+        $user = User::where('estado', '=', '1')->get();
+        $pdf = PDF::loadView('usuario.pdf', compact('user'));
+        return $pdf->download('user.pdf');
     }
 }

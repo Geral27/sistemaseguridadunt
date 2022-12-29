@@ -5,24 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VerificarDis extends Model
+class VerificarVe extends Model
 {
     public $timestamps = false;
-    protected $table= 'verificardisp';
+    protected $table= 'verificarve';
     //protected $primaryKey = 'idvdisp';
     protected $fillable = [
-        'dispositivo_id', 'user_id', 'estado',
+        'vehiculo_id', 'user_id', 'estado',
     ];
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
         //return $this->hasOne('App\Models\User','id','id');
     }
-    public function dispositivo()
+    public function vehiculo()
     {
-        return $this->belongsTo(Dispositivo::class);
+        return $this->belongsTo(Vehiculo::class);
         //return $this->hasOne('App\Models\User','id','id');
     }
-
 }

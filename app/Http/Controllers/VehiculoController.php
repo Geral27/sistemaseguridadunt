@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Vehiculo;
+use PDF;
 
 class VehiculoController extends Controller
 {
@@ -117,5 +118,12 @@ class VehiculoController extends Controller
         $vehiculo->estado='0';
         $vehiculo->save();
         return redirect('vehiculo')->with('datos', 'Registro eliminado');
+    }
+
+    public function descargar()
+    {
+        $vehiculo = Vehiculo::where('estado', '=', '1')->get();
+        $pdf = PDF::loadView('vehiculo.pdf', compact('vehiculo'));
+        return $pdf->download('vehiculo.pdf');
     }
 }

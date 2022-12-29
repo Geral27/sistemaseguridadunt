@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Dispositivo;
+use PDF;
 
 class DispositivoController extends Controller
 {
@@ -132,5 +133,12 @@ class DispositivoController extends Controller
         $dispositivo->estado='0';
         $dispositivo->save();
         return redirect('dispositivo')->with('datos', 'Registro eliminado');
+    }
+
+    public function descargar()
+    {
+        $dispositivo = Dispositivo::where('estado', '=', '1')->get();
+        $pdf = PDF::loadView('dispositivo.pdf', compact('dispositivo'));
+        return $pdf->download('dispositivo.pdf');
     }
 }

@@ -2,23 +2,23 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Registrar Verificación Dispositivo</h5>
+            <h5 class="modal-title">Registrar Verificación Vehículo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            {!! Form::open(['url' => 'verificar/store', 'method' => 'get']) !!}
+            {!! Form::open(['url' => 'verificar/store2', 'method' => 'get']) !!}
             @csrf
             <div class="row">                   
                 <div class="form-group col-4">
-                    {!! Form::label('codigodispositivo', 'Ingresar Placa') !!}
-                    {!! Form::text('codigodispositivo', '', ['class' => 'form-control', 'required']) !!}
+                    {!! Form::label('placa', 'Ingresar Placa') !!}
+                    {!! Form::text('placa', '', ['class' => 'form-control', 'required']) !!}
                 </div>
                 <div class="form-group col-2">
-                    <a type="button" id="btn-buscar" class="btn btn-info" style="margin-top: 30px;"><i class="fa fa-search"></i> Buscar</a>
+                    <a type="button" id="btn-buscar2" class="btn btn-info" style="margin-top: 30px;"><i class="fa fa-search"></i> Buscar</a>
                 </div>
-                {!! Form::text('iddispositivo', '', ['class' => 'form-control iddispositivo', 'hidden']) !!}
+                {!! Form::text('idvehiculo', '', ['class' => 'form-control idvehiculo', 'hidden']) !!}
                 <div class="form-group col-6">
                     {!! Form::label('id_user', 'Usuario') !!}
                     {!! Form::text('id_user', '', ['class' => 'form-control', 'readonly']) !!}
@@ -26,16 +26,16 @@
             </div>
             <div class="row">
                 <div class="form-group col-4">
-                    {!! Form::label('tipodispositivo', 'Tipo') !!}
-                    {!! Form::text('tipodispositivo', '', ['class' => 'form-control', 'required', 'readonly']) !!}
+                    {!! Form::label('tipovehiculo', 'Tipo') !!}
+                    {!! Form::text('tipovehiculo', '', ['class' => 'form-control', 'required', 'readonly']) !!}
                 </div>
                 <div class="form-group col-4">
-                    {!! Form::label('serie', 'Serie') !!}
-                    {!! Form::text('serie', '', ['class' => 'form-control', 'required', 'readonly']) !!}
+                    {!! Form::label('soat', 'SOAT') !!}
+                    {!! Form::text('soat', '', ['class' => 'form-control', 'required', 'readonly']) !!}
                 </div>
                 <div class="form-group col-4">
-                    {!! Form::label('marca', 'Marca') !!}
-                    {!! Form::text('marca', '', ['class' => 'form-control', 'required', 'readonly']) !!}
+                    {!! Form::label('modelo', 'Modelo') !!}
+                    {!! Form::text('modelo', '', ['class' => 'form-control', 'required', 'readonly']) !!}
                 </div>
             </div>
             <div class="row">
@@ -72,9 +72,9 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#btn-buscar').click(function() {
+        $('#btn-buscar2').click(function() {
             $.ajax({
-                url: "verificar/"+$('#codigodispositivo').val()+"/buscar",
+                url: "verificar/"+$('#placa').val()+"/buscar2",
                 type: "GET",
                 success: function(data) {
                     console.log(data);
@@ -87,11 +87,11 @@
                             confirmButtonText: 'Aceptar'
                         }) */
                     } else {
-                        $('#codigodispositivo').val(data[0].codigodispositivo);
-                        $('.iddispositivo').val(data[0].id);
-                        $('#tipodispositivo').val(data[0].tipodispositivo);
-                        $('#serie').val(data[0].serie);
-                        $('#marca').val(data[0].marca);
+                        $('#placa').val(data[0].placa);
+                        $('.idvehiculo').val(data[0].id);
+                        $('#tipovehiculo').val(data[0].tipovehiculo);
+                        $('#soat').val(data[0].soat);
+                        $('#modelo').val(data[0].modelo);
                         $('.facultad').val(data[0].facultad);
                         $('.escuela').val(data[0].escuela);
                         $('#id_user').val(data[0].user.name);

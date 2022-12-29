@@ -24,21 +24,15 @@
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;
                             <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#crearvdis"><i class="fas fa-list"></i> Nueva Verificación</a>
+                            <a href="{{route('verificar.verificardispdf')}}" class="btn btn-icon icon-left btn-warning"  ><i class="far fa-file"></i> Reporte PDF</a>
                         </div>
                     </form>
                 </div>
             </div>
-            @if (session('datos'))
-                <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-                    {{session('datos')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-striped" id="tabla">
+                        <tr>
                             <th hidden>#</th>
                             <th>Usuario</th>
                             <th>Tipo</th>
@@ -47,37 +41,19 @@
                             <th>Escuela</th>
                             <th>Fecha Verificación</th>
                             <th>Vigilante</th>
-                            <th></th>
-                            <th></th>
                         </tr>
-                        <tr>
-                                <td hidden>1</td>
-                                <td>Leslie Eliana Roncal Sánchez</td>
-                                <td>Laptop</td>
-                                <td>159644785Pu</td>
-                                <td>Facultad de Estomatología</td>
-                                <td>Escuela de Estomatología</td>
-                                <td>2022-12-12</td>
-                                <td>Jose Antonio Roncal Monzon</td>
-                                <td >
-                                    <a href="#" data-toggle="modal" data-target="#edit" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>
-                                </td>
-                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroy" style="color: red;"><i class="fa fa-trash"></i></a></td>
-                            </tr>
+                        @foreach ($verificardis as $ve)
                             <tr>
-                                <td hidden>1</td>
-                                <td>Edward sanchez verastegui</td>
-                                <td>Tablet</td>
-                                <td>159644785Pu</td>
-                                <td>Facultad de Ingeniería</td>
-                                <td>Escuela de Ingeniería Metalúrgica</td>
-                                <td>2022-12-12</td>
-                                <td>Jose Antonio Roncal Monzon</td>
-                                <td >
-                                    <a href="#" data-toggle="modal" data-target="#edit" type="button" class="btneditar" style="color: orange;"><i class="fa fa-edit"></i></a>
-                                </td>
-                                <td><a href="#" type="button" data-toggle="modal" data-target="#destroy" style="color: red;"><i class="fa fa-trash"></i></a></td>
+                                <td hidden>{{$ve->id}}</td>
+                                <td>{{$ve->dispositivo->user->name}}</td>
+                                <td>{{$ve->dispositivo->tipodispositivo}}</td>
+                                <td>{{$ve->dispositivo->serie}}</td>
+                                <td>{{$ve->dispositivo->facultad}}</td>
+                                <td>{{$ve->dispositivo->escuela}}</td>
+                                <td>{{$ve->created_at}}</td>
+                                <td>{{$ve->user->name}}</td>
                             </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>

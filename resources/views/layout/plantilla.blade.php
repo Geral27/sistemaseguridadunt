@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
 
-  <style>
-  </style>
   <!-- Start GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
   <script>
@@ -78,7 +76,7 @@
           @auth
           <ul class="sidebar-menu">
             <li class="dropdown">
-              <a href="/inicio" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
+              <a href="{{URL::to('/dashboard')}}" class="nav-link"><i class="fas fa-home"></i><span>Inicio</span></a>
             </li>
             {{-- <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Registros</span></a>
@@ -99,7 +97,7 @@
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i><span>Verificación</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{URL::to('/verificar')}}">Dispositivos Electrónicos</a></li>
-                <li><a class="nav-link" href="index-0.html">Vehículos</a></li>
+                <li><a class="nav-link" href="{{URL::to('/verificarv')}}">Vehículos</a></li>
               </ul>
             </li>
           </ul>
@@ -145,7 +143,6 @@
   <script src="assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
   <script src="assets/modules/prism/prism.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
   <!-- Page Specific JS File -->
   <script src="assets/js/page/index.js"></script>
   <script src="assets/js/page/bootstrap-modal.js"></script>
@@ -259,7 +256,6 @@
         }
       });
     });
-
   </script>
 
 </body>

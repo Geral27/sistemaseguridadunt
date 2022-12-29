@@ -25,6 +25,7 @@
                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>&nbsp;&nbsp;
                             <a href="#" class="btn btn-icon icon-left btn-info" data-toggle="modal" data-target="#creardis"><i class="far fa-user"></i> Nuevo Dispositivo</a>
+                            <a href="{{route('dispositivo.pdf')}}" class="btn btn-icon icon-left btn-warning"  ><i class="far fa-file"></i> Reporte PDF</a>
                         </div>
                     </form>
                 </div>
